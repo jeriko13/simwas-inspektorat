@@ -29,6 +29,11 @@ import PembinaanPengawasan from "views/PembinaanPengawasan";
 import PelayananPublik from "views/PelayananPublik";
 import Berita from "views/Berita";
 import PenegakanIntegritas from "views/PenegakanIntegritas";
+import LayananKonsultasi from "views/LayananKonsultasi";
+import LayananPengaduan from "views/LayananPengaduan";
+import LayananWBS from "views/LayananWBS";
+import LayananPermohonan from "views/LayananPermohonan";
+
 // import Pb from "views/Pb";
 
 
@@ -70,6 +75,13 @@ ReactDOM.render(
       <Route path="/profile" exact component={Profile} />
       <Route path="/profil" exact component={Profil} />
       <Route path="/PenegakanIntegritas" exact component={PenegakanIntegritas} />
+      <Route path="/LayananKonsultasi" exact component={LayananKonsultasi} />
+      <Route path="/LayananPengaduan" exact component={LayananPengaduan} />
+      <Route path="/LayananWBS" exact component={LayananWBS} />
+      <Route path="/LayananPermohonan" exact component={LayananPermohonan} />
+     
+
+      
       {/* <Route path="/Pb" exact component={Pb} /> */}
       
       {/* <Route path="/Berita" exact component={BEr} /> */}
