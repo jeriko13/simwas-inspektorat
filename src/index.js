@@ -16,7 +16,6 @@ import Promosi from "views/tombol/Promosi";
 import Informasi from "views/tombol/Informasi";
 import Peta1 from "views/tombol/Peta1";
 import Peta from "views/tombol/Peta";
-
 import Landing from "views/Landing";
 import Profile from "views/Profile";
 import Profil from "views/Profil";
@@ -33,6 +32,7 @@ import LayananKonsultasi from "views/LayananKonsultasi";
 import LayananPengaduan from "views/LayananPengaduan";
 import LayananWBS from "views/LayananWBS";
 import LayananPermohonan from "views/LayananPermohonan";
+import Beranda from "views/Beranda";
 
 // import Pb from "views/Pb";
 
@@ -68,6 +68,7 @@ ReactDOM.render(
       <Route path="/landing" exact component={Landing} />
       <Route path="/slide" exact component={Slide} />
       <Route path="/PembinaanPengawasan" exact component={PembinaanPengawasan} />
+      <Route path="/Beranda" exact component={Beranda} />
       <Route path="/Berita" exact component={Berita} />
       <Route path="/Berita/:params" exact component={Berita} />
       <Route path="/reformasi" exact component={Reformasi} />
