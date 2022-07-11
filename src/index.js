@@ -27,6 +27,7 @@ import Slide from "views/Slide";
 import PembinaanPengawasan from "views/PembinaanPengawasan";
 import PelayananPublik from "views/PelayananPublik";
 import Berita from "views/Berita";
+import BeritaDetail from "views/BeritaDetail";
 import PenegakanIntegritas from "views/PenegakanIntegritas";
 import LayananKonsultasi from "views/LayananKonsultasi";
 import LayananPengaduan from "views/LayananPengaduan";
@@ -71,6 +72,8 @@ ReactDOM.render(
       <Route path="/Beranda" exact component={Beranda} />
       <Route path="/Berita" exact component={Berita} />
       <Route path="/Berita/:params" exact component={Berita} />
+      <Route path="/BeritaDetail" exact component={BeritaDetail} />
+      <Route path="/BeritaDetail/:params" exact component={BeritaDetail} />
       <Route path="/Informasi" exact component={Informasi} />
       <Route path="/Informasi/:params" exact component={Informasi} />
       <Route path="/reformasi" exact component={Reformasi} />
