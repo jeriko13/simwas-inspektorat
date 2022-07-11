@@ -33,6 +33,8 @@ export default function Berita() {
   const checkInfo = () => {
     try {
       Axios.get(`${API_URL}/list/cv_berita?cmd=search&t=cv_berita&x_kategori_berita_id=${keywords}`)
+      
+
         .then(res => {
         console.log(res.data);
           const data = res.data;
