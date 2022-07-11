@@ -32,14 +32,14 @@ export default function Berita() {
 
   const checkInfo = () => {
     try {
-      Axios.get(`${API_URL}/view/cv_berita_detail/${keywords}`)
+      Axios.get(`${API_URL}/list/cv_berita_detail?cmd=search&t=cv_berita_detail&x_kategori_berita_id=${keywords}`)
       
 
         .then(res => {
         console.log(res.data);
           const data = res.data;
          setTotalRecordCount(data.totalRecordCount);
-          setDataInformasi(data.cv_berita);
+          setDataInformasi(data.cv_berita_detail);
           console.log(data);
         })
         .catch(function (error) {
@@ -167,8 +167,9 @@ export default function Berita() {
                       </svg>
 
                       <center><h4 className="text-xl font-bold text-white">
-                      <p> {hasil.judul}  </p>
-                      <p> {hasil.tanggal} </p>
+                      {/* <p> {hasil.judul}  </p>
+                      <p> {hasil.tanggal} </p> */}
+                      <p> {hasil.isi} </p>
                      
                       
                   

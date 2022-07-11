@@ -142,7 +142,7 @@ export default function Berita() {
               
                
            
-                  <a href="/Simwas" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+                  <a href="/beritadetail" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   
                   >    
             
