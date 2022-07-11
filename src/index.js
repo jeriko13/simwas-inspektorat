@@ -71,6 +71,8 @@ ReactDOM.render(
       <Route path="/Beranda" exact component={Beranda} />
       <Route path="/Berita" exact component={Berita} />
       <Route path="/Berita/:params" exact component={Berita} />
+      <Route path="/Informasi" exact component={Informasi} />
+      <Route path="/Informasi/:params" exact component={Informasi} />
       <Route path="/reformasi" exact component={Reformasi} />
       <Route path="/PelayananPublik" exact component={PelayananPublik} />
       <Route path="/profile" exact component={Profile} />

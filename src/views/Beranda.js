@@ -6,13 +6,15 @@ import { SearchIcon } from '@heroicons/react/outline';
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
+
 // swiper bundle styles
 import 'swiper/swiper-bundle.min.css'
 
 // swiper core styles
 import 'swiper/swiper.min.css'
 
-import {ROOT_URL, API_URL} from 'config/config'
+import {ROOT_URL, API2_URL} from 'config/config'
+
 
 
 
@@ -38,7 +40,7 @@ export default function Beranda() {
     })
     useEffect(() => {
         (async () => {
-            const resPeraturan = await Axios.get(`${API_URL}/api/list/peraturan_terkait`).then(res => res.data.peraturan_terkait);
+            const resPeraturan = await Axios.get(`${API2_URL}/api/list/peraturan_terkait`).then(res => res.data.peraturan_terkait);
             setDataPeraturan(resPeraturan);
             // console.log(dataPeraturan)
         })()
@@ -50,7 +52,7 @@ export default function Beranda() {
 
 
     const getSwiper = () => {
-        Axios.get(`${API_URL}/api/list/swiper`)
+        Axios.get(`${API2_URL}/api/list/swiper`)
         .then(res => {
           const data = res.data;
           setSwiperContent(data.swiper)
@@ -66,7 +68,8 @@ export default function Beranda() {
     return (
         
     <>
-        <Navbar/>
+        <Navbar />
+        <div className="h-screen">
         <Swiper
                 spaceBetween={0}
                 slidesPerView={1}
@@ -149,12 +152,12 @@ export default function Beranda() {
                     </SwiperSlide>
                 </Swiper>
             </div>
-        
-
-       
-
- 
+         
+        </div>
       
+        <br/>
+        <br/>
+          
         <Footer/>
     </>
     )

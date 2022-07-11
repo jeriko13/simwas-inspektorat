@@ -16,7 +16,7 @@ import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
 
-export default function PembinaanPengawasan() {
+export default function Berita() {
   let { params } = useParams();
   // let { params2 } = useParams();
   const [keywords, setKeywords] = useState((params) ? params : '');
