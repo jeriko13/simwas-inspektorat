@@ -3,6 +3,13 @@ import React, {useState, useEffect} from "react";
 import Axios from 'axios';
 import {API_URL} from '../config/config';
 // components
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
@@ -10,7 +17,8 @@ import { data } from "autoprefixer";
 
 
 export default function Berita() {
-
+  let { params } = useParams();
+  const [keywords, setKeywords] = useState((params) ? params : '');
   const [dataInformasi,setDataInformasi] = useState([]);
   const [startPage,setStartPage] = useState(1);
   const [totalRecordCount,setTotalRecordCount] = useState(0);
@@ -27,7 +35,8 @@ export default function Berita() {
 
   const checkInfo = () => {
     try {
-      Axios.get(`${API_URL}/list/cv_berita?start=1`)
+      
+      Axios.get(`${API_URL}/list/cv_berita?cmd=search&t=cv_berita&x_kategori_berita_id=${keywords}`)
         .then(res => {
         console.log(res.data);
           const data = res.data;

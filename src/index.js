@@ -35,7 +35,7 @@ import LayananPengaduan from "views/LayananPengaduan";
 import LayananWBS from "views/LayananWBS";
 import LayananPermohonan from "views/LayananPermohonan";
 import Beranda from "views/Beranda";
-import Informasi from "views/Informasi";
+// import Informasi from "views/Informasi";
 
 
 
@@ -64,7 +64,7 @@ ReactDOM.render(
     <Switch>
       {/* add routes with layouts */}
       <Route path="/promosi/:id" component={Promosi} />
-      <Route path="/informasi/:id" component={Informasi} />
+      {/* <Route path="/informasi/:id" component={Informasi} /> */}
       <Route path="/BeritaDetail/:id" component={BeritaDetail} />
       <Route path="/dashboard" component={Admin} />
       <Route path="/peta1/:id" component={Peta1} />
