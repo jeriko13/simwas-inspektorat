@@ -29,20 +29,20 @@ export default function Berita() {
     checkInfo()
   }, []);
 
-  useEffect(() => {
-    checkPromo()
-  }, []);
+  // useEffect(() => {
+  //   checkPromo()
+  // }, []);
 
   const checkInfo = () => {
     try {
       
       Axios.get(`${API_URL}/list/cv_berita?cmd=search&t=cv_berita&x_kategori_berita_id=${keywords}`)
         .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
           const data = res.data;
          setTotalRecordCount(data.totalRecordCount);
           setDataInformasi(data.cv_berita);
-          console.log(data);
+          // console.log(data);
         })
         .catch(function (error) {
           // handle error
@@ -53,61 +53,61 @@ export default function Berita() {
     }
   }
 
-  const handlePagination = (btn) => { 
-    if (btn == "next") {
-      try {
-        Axios.get(`${API_URL}/list/cv_berita?start=${startPage + 7}`)
-          .then(res => {
-            const data = res.data.cv_berita;
-            console.log(data);
-            setDataInformasi(data);
-            setStartPage(startPage + 7 );
+  // const handlePagination = (btn) => { 
+  //   if (btn == "next") {
+  //     try {
+  //       Axios.get(`${API_URL}/list/cv_berita?start=${startPage + 7}`)
+  //         .then(res => {
+  //           const data = res.data.cv_berita;
+  //           console.log(data);
+  //           setDataInformasi(data);
+  //           setStartPage(startPage + 7 );
 
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      try {
-        Axios.get(`${API_URL}/list/cv_berita?start=${startPage - 7}`)
-          .then(res => {
-            const data = res.data.cv_berita;
-            console.log(data);
-            setDataInformasi(data);
-            setStartPage(startPage - 7 );
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  //         })
+  //         .catch(function (error) {
+  //           // handle error
+  //           console.log(error);
+  //         })
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   } else {
+  //     try {
+  //       Axios.get(`${API_URL}/list/cv_berita?start=${startPage - 7}`)
+  //         .then(res => {
+  //           const data = res.data.cv_berita;
+  //           console.log(data);
+  //           setDataInformasi(data);
+  //           setStartPage(startPage - 7 );
+  //         })
+  //         .catch(function (error) {
+  //           // handle error
+  //           console.log(error);
+  //         })
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
    
-  }
+  // }
 
-  const checkPromo = () => {
-    try {
-      Axios.get(`${API_URL}/list/cv_promosi`)
-        .then(res => {
+  // const checkPromo = () => {
+  //   try {
+  //     Axios.get(`${API_URL}/list/cv_promosi`)
+  //       .then(res => {
         
-          const data = res.data;
-            setDataPromosi(data.cv_promosi);
+  //         const data = res.data;
+  //           setDataPromosi(data.cv_promosi);
          
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        })
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //       })
+  //       .catch(function (error) {
+  //         // handle error
+  //         console.log(error);
+  //       })
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   
     return (
