@@ -13,7 +13,7 @@ import Auth from "layouts/Auth.js";
 // views without layouts
 
 import Promosi from "views/tombol/Promosi";
-import Informasi from "views/tombol/Informasi";
+// import Informasi from "views/tombol/Informasi";
 import Peta1 from "views/tombol/Peta1";
 import Peta from "views/tombol/Peta";
 import Landing from "views/Landing";
@@ -27,6 +27,7 @@ import Slide from "views/Slide";
 import PembinaanPengawasan from "views/PembinaanPengawasan";
 import PelayananPublik from "views/PelayananPublik";
 import Berita from "views/Berita";
+import Beritastat from "views/Beritastat";
 import BeritaDetail from "views/BeritaDetail";
 import PenegakanIntegritas from "views/PenegakanIntegritas";
 import LayananKonsultasi from "views/LayananKonsultasi";
@@ -34,6 +35,9 @@ import LayananPengaduan from "views/LayananPengaduan";
 import LayananWBS from "views/LayananWBS";
 import LayananPermohonan from "views/LayananPermohonan";
 import Beranda from "views/Beranda";
+import Informasi from "views/Informasi";
+
+
 
 // import Pb from "views/Pb";
 
@@ -61,6 +65,7 @@ ReactDOM.render(
       {/* add routes with layouts */}
       <Route path="/promosi/:id" component={Promosi} />
       <Route path="/informasi/:id" component={Informasi} />
+      <Route path="/BeritaDetail/:id" component={BeritaDetail} />
       <Route path="/dashboard" component={Admin} />
       <Route path="/peta1/:id" component={Peta1} />
       <Route path="/peta" component={Peta} />
@@ -71,11 +76,13 @@ ReactDOM.render(
       <Route path="/PembinaanPengawasan" exact component={PembinaanPengawasan} />
       <Route path="/Beranda" exact component={Beranda} />
       <Route path="/Berita" exact component={Berita} />
+      <Route path="/Beritastat" exact component={Beritastat} />
       <Route path="/Berita/:params" exact component={Berita} />
-      <Route path="/BeritaDetail" exact component={BeritaDetail} />
+      {/* <Route path="/BeritaDetail" exact component={BeritaDetail} />
       <Route path="/BeritaDetail/:params" exact component={BeritaDetail} />
+     {/* <Route path="/Informasi/:id" exact component={Informasi} />
       <Route path="/Informasi" exact component={Informasi} />
-      <Route path="/Informasi/:params" exact component={Informasi} />
+      <Route path="/Informasi/:params" exact component={Informasi} /> */}
       <Route path="/reformasi" exact component={Reformasi} />
       <Route path="/PelayananPublik" exact component={PelayananPublik} />
       <Route path="/profile" exact component={Profile} />
@@ -85,6 +92,7 @@ ReactDOM.render(
       <Route path="/LayananPengaduan" exact component={LayananPengaduan} />
       <Route path="/LayananWBS" exact component={LayananWBS} />
       <Route path="/LayananPermohonan" exact component={LayananPermohonan} />
+ 
      
 
       

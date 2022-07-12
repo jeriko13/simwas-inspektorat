@@ -4,4 +4,5 @@ export const API_URL = "https://simwas.inspektorat.banjarkota.go.id/inspektorat_
 export const ROOT_URL = "https://satudata.banjarnegarakab.go.id";
 
 export const API2_URL = "https://satudata.banjarnegarakab.go.id/satudata_api";
+export const API3_URL = "https://dbhcht.banjarnegarakab.go.id/dbhcht_api";
 

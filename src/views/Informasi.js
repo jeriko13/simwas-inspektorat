@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import Axios from 'axios';
-import {API_URL} from '../config/config';
+import {API3_URL} from '../config/config';
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,11 +24,11 @@ export default function Informasi() {
       const checkInfo = () => {
         console.log(id);
         try {
-          Axios.get(`${API_URL}/view/cv_berita_detail/${id}`)
+          Axios.get(`${API3_URL}/api/view/cv_informasi/${id}`)
             .then(res => {
             
               const data = res.data;
-              setDataInformasi(data.cv_berita_detail);
+              setDataInformasi(data.cv_informasi);
               console.log(data);
             })
             .catch(function (error) {
@@ -49,9 +49,7 @@ export default function Informasi() {
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
               backgroundImage:
-                "url('https://drive.google.com/uc?export=view&id=1WeIQcIEB6Tclb8_A7RZ30a1YVjhLWYkF')",
-                // https://drive.google.com/uc?export=view&id=1WeIQcIEB6Tclb8_A7RZ30a1YVjhLWYkF
-                // https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80
+                "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')",
             }}
           >
             <span
@@ -91,7 +89,7 @@ export default function Informasi() {
                         (dataInformasi.gambar) ? (
                           <img
                           alt="..."
-                          src={dataInformasi.gambar}
+                          src={`http://dbhcht.banjarnegarakab.go.id/uploads/files/${dataInformasi.gambar.name}`}
                           className="w-full align-middle rounded-t-lg"
                           />
                     ) : <div></div>
@@ -115,7 +113,7 @@ export default function Informasi() {
                     <div className="w-full lg:w-9/12 px-4">
 
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                      {dataInformasi.isi}
+                      {dataInformasi.informasi}
                       </p>
                       
                     </div>

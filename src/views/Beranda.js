@@ -124,12 +124,18 @@ export default function Beranda() {
                         <div className="w-11/12 bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-2">
                             <p className="text-sm font-light text-center">Indeks Kepuasan Masyarakat (IKM)</p>
                             <p className="font-semibold text-lg text-center">{info.ikm}</p>
+                            {/* <img
+                        alt="..."
+                        src={require("assets/img/simwasauditi.jpg").default}
+                        className="w-full align-middle rounded-t-lg"
+                      /> */}
                         </div>
                     </SwiperSlide>
                     <SwiperSlide className="w-4/12 p-2">
                         <div className="w-11/12 bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-2">
                             <p className="text-sm font-light text-center">Sistem Akuntabilitas Kinerja Instansi Pemerintah (SAKIP)</p>
                             <p className="font-semibold text-lg text-center">{info.sakip}</p>
+                            
                         </div>
                     </SwiperSlide>
                     <SwiperSlide className="w-4/12 p-2">

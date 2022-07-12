@@ -16,7 +16,7 @@ import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
 
-export default function Informasi() {
+export default function Berita() {
   let { params } = useParams();
   // let { params2 } = useParams();
   const [keywords, setKeywords] = useState((params) ? params : '');
@@ -32,12 +32,14 @@ export default function Informasi() {
 
   const checkInfo = () => {
     try {
-      Axios.get(`${API_URL}/view/t_informasi/${keywords}`)
+      Axios.get(`${API_URL}/list/cv_berita?cmd=search&t=cv_berita&x_kategori_berita_id=${keywords}`)
+      
+
         .then(res => {
         console.log(res.data);
           const data = res.data;
          setTotalRecordCount(data.totalRecordCount);
-          setDataInformasi(data.t_informasi);
+          setDataInformasi(data.cv_berita);
           console.log(data);
         })
         .catch(function (error) {
@@ -140,7 +142,16 @@ export default function Informasi() {
               
                
            
-                  <a href="/Simwas" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+
+
+
+
+
+
+
+
+            
+                  <a href="/beritadetail/3" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   
                   >    
             
@@ -148,7 +159,7 @@ export default function Informasi() {
                 
                   <img
                         alt="..."
-                        // src={hasil.gambar}
+                        src={hasil.gambar}
                         className="w-full align-middle rounded-t-lg"
                       />
                     <blockquote className="relative p-8 mb-4">
@@ -166,7 +177,7 @@ export default function Informasi() {
 
                       <center><h4 className="text-xl font-bold text-white">
                       <p> {hasil.judul}  </p>
-                      <p> {hasil.isi} </p>
+                      <p> {hasil.tanggal} </p>
                      
                       
                   

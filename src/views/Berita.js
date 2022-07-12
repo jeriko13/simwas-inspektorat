@@ -4,37 +4,30 @@ import Axios from 'axios';
 import {API_URL} from '../config/config';
 // components
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
 
 export default function Berita() {
-  let { params } = useParams();
-  // let { params2 } = useParams();
-  const [keywords, setKeywords] = useState((params) ? params : '');
-  // const [keywords2, setKeywords2] = useState((params2) ? params2 : '');
+
   const [dataInformasi,setDataInformasi] = useState([]);
   const [startPage,setStartPage] = useState(1);
   const [totalRecordCount,setTotalRecordCount] = useState(0);
 
+  const [dataPromosi,setDataPromosi] = useState([]);
+
   useEffect(() => {
-    checkInfo();
-    // checkPromo();
-  } );
+    checkInfo()
+  }, []);
+
+  useEffect(() => {
+    checkPromo()
+  }, []);
 
   const checkInfo = () => {
     try {
-      Axios.get(`${API_URL}/list/cv_berita?cmd=search&t=cv_berita&x_kategori_berita_id=${keywords}`)
-      
-
+      Axios.get(`${API_URL}/list/cv_berita?start=1`)
         .then(res => {
         console.log(res.data);
           const data = res.data;
@@ -50,7 +43,63 @@ export default function Berita() {
       console.log(error);
     }
   }
- 
+
+  const handlePagination = (btn) => { 
+    if (btn == "next") {
+      try {
+        Axios.get(`${API_URL}/list/cv_berita?start=${startPage + 7}`)
+          .then(res => {
+            const data = res.data.cv_berita;
+            console.log(data);
+            setDataInformasi(data);
+            setStartPage(startPage + 7 );
+
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        Axios.get(`${API_URL}/list/cv_berita?start=${startPage - 7}`)
+          .then(res => {
+            const data = res.data.cv_berita;
+            console.log(data);
+            setDataInformasi(data);
+            setStartPage(startPage - 7 );
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+      } catch (error) {
+        console.log(error);
+      }
+    }
+   
+  }
+
+  const checkPromo = () => {
+    try {
+      Axios.get(`${API_URL}/list/cv_promosi`)
+        .then(res => {
+        
+          const data = res.data;
+            setDataPromosi(data.cv_promosi);
+         
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   
     return (
       <>
@@ -61,31 +110,24 @@ export default function Berita() {
               className="absolute top-0 w-full h-full bg-center bg-cover"
               style={{
                 backgroundImage:
-                
-                "url('https://drive.google.com/uc?export=view&id=1WeIQcIEB6Tclb8_A7RZ30a1YVjhLWYkF')", 
-             
+                "url('https://drive.google.com/uc?export=view&id=1WeIQcIEB6Tclb8_A7RZ30a1YVjhLWYkF')",
+                  
               }}
             >
-              
               <span
                 id="blackOverlay"
                 className="w-full h-full absolute opacity-75 bg-black"
               ></span>
             </div>
-
-            
             <div className="container relative mx-auto">
               <div className="items-center flex flex-wrap">
                 <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                   <div className="pr-12">
                     <h1 className="text-white font-semibold text-5xl">
-                   {/* Selamat Datang */}
+                      Halaman Berita
                     </h1>
-                    <h2 className="mt-4 text-white font-semibold text-4xl">
-                    Halaman Berita
-                    </h2>
                     <p className="mt-4 text-lg text-blueGray-200">
-                    
+                    {/* Aplikasi Layanan Promosi, dan Informasi DBHCHT */}
                     </p>
                     <p></p>
                   </div>
@@ -117,42 +159,38 @@ export default function Berita() {
       
             
             <div className="container mx-auto px-4">
+              <div className="flex flex-wrap">
+              {dataPromosi.map( hasil => {
+                        return(
+
+                <a
+             
+                >
+
+          
+                  </a>
+                
+                )
+                })}
+                
+              </div>
+  
+              <div className="flex flex-wrap items-center mt-32">
          
-            <div className="container mx-auto px-4">
-             {/*  <div className="flex flex-wrap items-center mt-32"> */}
-             {dataInformasi.map((hasil) => (
+              {dataInformasi.map( hasil => {
+                        return(
 
-            //    <div key={hasil.judul} className="group relative">
-            //    <div className="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-            //      <img
-            //        src={hasil.gambar}
-            //        // alt={dataInformasi.imageAlt}
-            //        className="w-full h-full object-center object-cover"
-            //      />
-            //    </div>
-            //    <h3 className="mt-6 text-sm text-gray-500">
-            //      <a href="https://simwas.inspektorat.banjarkota.go.id/">
-            //        <span className="absolute inset-0" />
-            //        {hasil.tanggal}
-            //      </a>
-            //    </h3>
-            //    <p className="text-base font-semibold text-gray-900">{hasil.isi}</p>
-            //  </div>
-
-              
-               
-           
-                  <a href="/beritadetail" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
-                  
+                  <a href={`/beritadetail/${hasil.berita_id}`} className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
-                
-                  <img
-                        alt="..."
-                        src={hasil.gambar}
-                        className="w-full align-middle rounded-t-lg"
-                      />
+                  
+                        <img
+                      alt="..."
+                     
+                      src={hasil.gambar}
+                      className="w-full align-middle rounded-t-lg"
+                    />
                     <blockquote className="relative p-8 mb-4">
                       <svg
                         preserveAspectRatio="none"
@@ -176,21 +214,19 @@ export default function Berita() {
                           
                           
                      </h4>  </center>
-                     <p className="text-md font-light mt-2 text-white">
-                        
-                        {/* {hasil.isi} */}
-                       </p>
+                  
+                  
+                    
+                  
                     </blockquote>
                   </div>
                   </a>
-                  ))}
 
-               
-
-             
+                )
+                })}
    
-                
-               
+          
+              
               </div>
             </div>
           </section>
