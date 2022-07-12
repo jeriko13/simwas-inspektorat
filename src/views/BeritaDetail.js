@@ -87,15 +87,15 @@ export default function Informasi() {
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-2/12 px-4 lg:order-2 flex justify-center">
                     <div className="relative">
-                      {
-                        (dataInformasi.gambar) ? (
+                      
+                        
                           <img
                           alt="..."
                           src={dataInformasi.gambar}
                           className="w-full align-middle rounded-t-lg"
                           />
-                    ) : <div></div>
-                    }
+                     <div></div>
+                    
                     </div>
                   </div>
                   
