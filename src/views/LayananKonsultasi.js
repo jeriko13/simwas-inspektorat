@@ -1,50 +1,40 @@
-import React, {useState} from 'react';
-//import { Link } from "react-router-dom";
-import Axios from 'axios';
-import qs from 'qs';
-// components
-import { Link } from 'react-router-dom';
-import { API_URL } from '../config/config';
+import React, { useState } from 'react';
+import { Form, Button } from 'semantic-ui-react';
+import axios from 'axios';
+import '../App.css';
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
-// import { data } from "autoprefixer";
+import 'semantic-ui-css/semantic.min.css'
 
-// const [tahap, setTahap] = useState('');
-// const [pesan, setPesan] = useState(0);
-const konfirmasiPendaftaran = () => {
-  // const [pesan, setPesan] = useState(0);
-  try {
-      Axios.post(`${API_URL}/add/tf_layanan_konsultasi`, qs.stringify({
-          
-          
-      
-          // nik: nik, 
-          // nama: nama,
-          // email: email,
-          // pesan: pesan
-        
-         /*  posisi: posisi */
-          
-      }), {
-          headers: { 
-              "Content-Type": "application/x-www-form-urlencoded"
-          }
-      })
-      .then(res => {
-          console.log(res);
-          // setTahap(6);
-      })
-      .catch(function (error) {
-          console.log(error);
-      })
-  } catch (error) {
-      console.log(error);
+
+
+
+
+
+
+
+
+
+
+import { useHistory } from 'react-router';
+
+export default function LKform() {
+  let history = useHistory();
+  const [nik, setNik] = useState('');
+  const [nama, setNama] = useState('');
+  const [email, setEmail] = useState('');
+  const [pesan, setPesan] = useState('');
+
+  const sendDataToAPI = () => {
+    axios.post(`https://simwas.inspektorat.banjarkota.go.id/inspektorat_api/api/add/tf_layanan_konsultasi`, {
+      nik,
+      nama,
+      email,
+      pesan
+    }).then(() => {
+      history.push('/LKform')
+    })
   }
-}
-
-
-export default function PelayananPublic() {
-  
   return (
     <>
       <Navbar transparent />
@@ -118,7 +108,40 @@ export default function PelayananPublic() {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
-                    <center>
+
+                    
+  <Form>
+      <Form.Field>
+          <label>Masukan Nik</label>
+          <input name="nik" 
+          onChange={(e) => setNik(e.target.value)} 
+          placeholder='Nik' />
+        </Form.Field>
+        <Form.Field>
+          <label>Masukan Name</label>
+          <input name="nama" 
+          onChange={(e) => setNama(e.target.value)} 
+          placeholder='Name' />
+        </Form.Field>
+
+        <Form.Field>
+          <label>Masukan Email</label>
+          <input 
+          name="email" 
+          placeholder='Email ' 
+          onChange={(e) => setEmail(e.target.value)} 
+          />
+        </Form.Field>
+        <Form.Field>
+          <label>Masukan Pesan</label>
+          <input name="pesan" 
+          onChange={(e) => setPesan(e.target.value)} 
+          placeholder='Isi Pesan' />
+        </Form.Field>
+        <Button type='submit' onClick={sendDataToAPI}>Submit</Button>
+       
+      </Form>
+                    {/* <center>
                       <h4 className="text-2xl font-semibold">
                         Layanan Konsultasi
                       </h4>
@@ -217,7 +240,7 @@ export default function PelayananPublic() {
                       >
                         Kirim
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
