@@ -8,7 +8,7 @@ import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 // import { data } from "autoprefixer";
 
-export default function PelayananPublic() {
+export default function LayananPermohonan() {
   return (
     <>
       <Navbar transparent />

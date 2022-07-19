@@ -35,6 +35,8 @@ import LayananPengaduan from "views/LayananPengaduan";
 import LayananWBS from "views/LayananWBS";
 import LayananPermohonan from "views/LayananPermohonan";
 import Beranda from "views/Beranda";
+import LKform from "views/LKform";
+
 // import Informasi from "views/Informasi";
 
 
@@ -92,6 +94,8 @@ ReactDOM.render(
       <Route path="/LayananPengaduan" exact component={LayananPengaduan} />
       <Route path="/LayananWBS" exact component={LayananWBS} />
       <Route path="/LayananPermohonan" exact component={LayananPermohonan} />
+      <Route path="/LKform" exact component={LKform} />
+ 
  
      
 
