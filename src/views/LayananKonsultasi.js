@@ -138,7 +138,7 @@ export default function LKform() {
           onChange={(e) => setPesan(e.target.value)} 
           placeholder='Isi Pesan' />
         </Form.Field>
-        <Button type='submit' onClick={sendDataToAPI}>Submit</Button>
+        <Button type='submit'  color="green" onClick={sendDataToAPI}>Submit</Button>
        
       </Form>
                     {/* <center>
