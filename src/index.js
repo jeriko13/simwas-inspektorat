@@ -31,6 +31,8 @@ import Beritastat from "views/Beritastat";
 import BeritaDetail from "views/BeritaDetail";
 import PenegakanIntegritas from "views/PenegakanIntegritas";
 import LayananKonsultasi from "views/LayananKonsultasi";
+
+import LaporanKonsultasi from "views/LaporanKonsultasi";
 import LayananPengaduan from "views/LayananPengaduan";
 import LayananWBS from "views/LayananWBS";
 import LayananPermohonan from "views/LayananPermohonan";
@@ -92,6 +94,7 @@ ReactDOM.render(
         exact
         component={PenegakanIntegritas}
       />
+       <Route path="/LaporanKonsultasi" exact component={LaporanKonsultasi} />
       <Route path="/LayananKonsultasi" exact component={LayananKonsultasi} />
       <Route path="/LayananPengaduan" exact component={LayananPengaduan} />
       <Route path="/LayananWBS" exact component={LayananWBS} />

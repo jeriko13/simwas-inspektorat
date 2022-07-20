@@ -13,53 +13,79 @@ import "swiper/swiper-bundle.min.css";
 // swiper core styles
 import "swiper/swiper.min.css";
 
-import { ROOT_URL, API_URL } from "config/config";
+import { ROOT_URL, API2_URL } from "config/config";
 import { data } from "autoprefixer";
 
 SwiperCore.use([Autoplay, Navigation, Pagination, A11y]);
 
 export default function Beranda() {
-  const [dataPeraturan, setDataPeraturan] = useState([]);
-  const [counter, setCounter] = useState(null);
-  const [keywords, setKeywords] = useState("");
-  const [swiperContent, setSwiperContent] = useState([]);
-  const [dataInformasi, setDataInformasi] = useState([]);
+  const [dataPeraturan, setDataPeraturan] = useState([])
+  const [counter, setCounter] = useState(null)
+  const [keywords, setKeywords] = useState('')
+  const [swiperContent, setSwiperContent] = useState([])
   const [info, setInfo] = useState({
-    ikm: "...",
-    ipp: "...",
-    irb: "...",
-    kod: "...",
-    sakip: "...",
-  });
+      ikm: "...",
+      ipp: "...",
+      irb: "...",
+      kod: "...",
+      sakip: "..."
+  })
 
   useEffect(() => {
-    checkInfo();
+      (async () => {
+          const resPeraturan = await Axios.get(`${API2_URL}/api/list/cv_peraturan_terkait`).then(res => res.data.cv_peraturan_terkait);
+          setDataPeraturan(resPeraturan);
+          // console.log(dataPeraturan)
+      })()
+      handleCounter();
+      getSwiper();
+      getInfo();
   }, []);
 
-  const checkInfo = () => {
-    try {
-      Axios.get(
-        `${API_URL}/list/cv_berita?cmd=search&t=cv_berita&x_kategori_berita_id=${keywords}`
-      )
-        .then((res) => {
-          // console.log(res.data);
-          const data = res.data;
-          setDataInformasi(data.cv_berita);
-          // console.log(data);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const handleCounter = () => {
+      Axios.get(`${API2_URL}/api/view/cv_counter/1`)
+      .then(res => {
+        const data = res.data;
+        setCounter(data.cv_counter.counter)
+      //   Axios.post(`${API_URL}/api/edit/t_counter/1`, qs.stringify({
+      //     counter: parseInt(data.t_counter.counter)+1
+      //   }),{headers: {
+      //     "Content-Type": "application/x-www-form-urlencoded"
+      //   }})
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+  }
 
+  const getSwiper = () => {
+      Axios.get(`${API2_URL}/api/list/cv_swiper`)
+      .then(res => {
+        const data = res.data;
+        setSwiperContent(data.cv_swiper)
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+  }
+
+  const getInfo = () => {
+      Axios.get(`${API2_URL}/api/list/cv_info`)
+      .then(res => {
+        const data = res.data;
+        setInfo(data.cv_info[0]);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+  }
   return (
     <>
       <Navbar transparent />
-      <div className="flex mt-20 px-20 w-full   items-center flex-col md:flex-row">
+      {/* <div className="flex mt-20 px-20 w-full   items-center flex-col md:flex-row">
         <div
           className="absolute  w-full h-full bg-center bg-cover "
           style={{
@@ -207,4 +233,117 @@ export default function Beranda() {
       <Footer />
     </>
   );
-}
+} */}
+
+
+
+
+
+
+
+
+
+
+
+
+<div className="h-screen">
+            <Swiper
+                spaceBetween={0}
+                slidesPerView={1}
+                navigation
+                autoplay={{ 
+                    delay: 5000,
+                    disableOnInteraction: false
+                }}
+                pagination={{ clickable: true }}
+                loop
+                className="mb-10 h-screen"
+                style={{
+                    height: '83%'
+                }}
+            >
+                {
+                    swiperContent.map(item => (
+                        <SwiperSlide>
+                            <div
+                                className="w-full h-full bg-center bg-cover"
+                                style={{
+                                    backgroundImage: `url(https://satudata.banjarnegarakab.go.id/data_csv/${item.gambar.replace(' ', '%20')})`
+                                }}
+                            >
+                                <div className="h-full flex flex-col items-center justify-center" style={{backgroundColor: 'rgba(0,0,0,.1)'}}>
+                                    <div className="p-4 w-10/12 mx-auto" style={{backgroundColor: 'rgba(0,0,0,.5)'}}>
+                                        <h1 className="text-white font-semibold text-xl">
+                                            {item.judul}
+                                        </h1>
+                                        <p className="mt-4 text-lg text-blueGray-200">
+                                            {item.deskripsi}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    ))
+                }
+            </Swiper>
+            <div className="w-full flex items-center justify-center" style={{height: '17%'}}>
+                <Swiper
+                    spaceBetween={0}
+                    slidesPerView={3}
+                    autoplay={{ 
+                        delay: 2500,
+                        disableOnInteraction: false
+                    }}
+                    loop
+                    className="mb-10 h-full w-11/12 lg:w-8/12 mx-auto"
+                >
+                    <SwiperSlide className="w-4/12 p-2">
+                        <div className="w-11/12 bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-2">
+                            <p className="text-sm font-light text-center">Indeks Kepuasan Masyarakat (IKM)</p>
+                            <p className="font-semibold text-lg text-center">{info.ikm}</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="w-4/12 p-2">
+                        <div className="w-11/12 bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-2">
+                            <p className="text-sm font-light text-center">Sistem Akuntabilitas Kinerja Instansi Pemerintah (SAKIP)</p>
+                            <p className="font-semibold text-lg text-center">{info.sakip}</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="w-4/12 p-2">
+                        <div className="w-11/12 bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-2">
+                            <p className="text-sm font-light text-center">Indeks Reformasi Birokrasi (IRB)</p>
+                            <p className="font-semibold text-lg text-center">{info.irb}</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="w-4/12 p-2">
+                        <div className="w-11/12 bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-2">
+                            <p className="text-sm font-light text-center">Indeks Pelayanan Publik (IPP)</p>
+                            <p className="font-semibold text-lg text-center">{info.ipp}</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide className="w-4/12 p-2">
+                        <div className="w-11/12 bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-2">
+                            <p className="text-sm font-light text-center">Kematangan Organisasi Daerah (KOD)</p>
+                            <p className="font-semibold text-lg text-center">{info.kod}</p>
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
+            </div>
+        </div>
+     
+     
+     
+    
+
+        {/* <div className="p-8">
+            <h6 className="uppercase text-blueGray-600 text-xs font-semibold border-2 p-2 inline-block border-blueGray-600">
+            Situs ini telah dikunjungi sebanyak <span className="text-blueGray-800">{(counter) ? counter : '...'}</span> kali
+            </h6>
+        </div> */}
+
+        <br/>
+        <br/>
+        <Footer/>
+    </>
+    )
+};

@@ -20,21 +20,27 @@ import 'semantic-ui-css/semantic.min.css'
 import { useHistory } from 'react-router';
 // import { data } from "autoprefixer";
 
-export default function LKform() {
+export default function LaporanKonsultasi() {
   let history = useHistory();
-  const [nik, setNik] = useState('');
+  const [tahun, setTahun] = useState('');
+  const [tanggal, setTanggal] = useState('');
   const [nama, setNama] = useState('');
-  const [email, setEmail] = useState('');
-  const [pesan, setPesan] = useState('');
+  const [alamat, setAlamat] = useState('');
+  const [jabatan, setJabatan] = useState('');
+  const [konsultasi, setKonsultasi] = useState('');
+  const [uraian_masalah, setUraian_masalah] = useState('');
 
   const sendDataToAPI = () => {
-    axios.post(`https://simwas.inspektorat.banjarkota.go.id/inspektorat_api/api/add/tf_layanan_konsultasi`, {
-      nik,
+    axios.post(`https://simwas.inspektorat.banjarkota.go.id/inspektorat_api/api/add/t_laporan_konsultasi`, {
+      // tahun,
+      // tanggal,
       nama,
-      email,
-      pesan
+      alamat,
+      jabatan,
+      konsultasi,
+      uraian_masalah
     }).then(() => {
-      history.push('/LayananKonsultasi')
+      history.push('/LaporanKonsultasi')
     })
   }
   return (
@@ -124,33 +130,53 @@ export default function LKform() {
 
                     
   <Form>
-      <Form.Field>
-          <label>Masukan Nik</label>
-          <input name="nik" 
-          onChange={(e) => setNik(e.target.value)} 
-          placeholder='Nik' />
+      {/* <Form.Field>
+          <label>Masukan Tahun</label>
+          <input name="tahun" 
+          onChange={(e) => setTahun(e.target.value)} 
+          placeholder='Tahun' />
         </Form.Field>
         <Form.Field>
-          <label>Masukan Nama</label>
-          <input name="nama" 
-          onChange={(e) => setNama(e.target.value)} 
-          placeholder='Name' />
-        </Form.Field>
+          <label>Masukan Tanggal</label>
+          <input name="tanggal" 
+          onChange={(e) => setTanggal(e.target.value)} 
+          placeholder='Tanggal' />
+        </Form.Field> */}
 
         <Form.Field>
-          <label>Masukan Email</label>
+          <label>Masukan Nama</label>
           <input 
-          name="email" 
-          placeholder='Email ' 
-          onChange={(e) => setEmail(e.target.value)} 
+          name="nama" 
+          placeholder='Nama' 
+          onChange={(e) => setNama(e.target.value)} 
           />
         </Form.Field>
         <Form.Field>
-          <label>Hal yang dikonsultasikan ...</label>
-          <input name="pesan" 
-          onChange={(e) => setPesan(e.target.value)} 
-          placeholder='Isi Pesan' />
+          <label>Masukan Alamat</label>
+          <input name="alamat" 
+          onChange={(e) => setAlamat(e.target.value)} 
+          placeholder='Isi Alamat' />
         </Form.Field>
+
+        <Form.Field>
+          <label>Jabatan</label>
+          <input name="jabatan" 
+          onChange={(e) => setJabatan(e.target.value)} 
+          placeholder='Jabatan' />
+        </Form.Field>
+        <Form.Field>
+          <label>Masalah Konsultasi</label>
+          <input name="konsultasi" 
+          onChange={(e) => setKonsultasi(e.target.value)} 
+          placeholder='Konsultasi' />
+        </Form.Field>
+        <Form.Field>
+          <label>Uraian Masalah</label>
+          <input name="uraian_masalah" 
+          onChange={(e) => setUraian_masalah(e.target.value)} 
+          placeholder='Uraian Masalah' />
+        </Form.Field>
+
         <Button type='submit'  color="green" onClick={sendDataToAPI}>Submit</Button>
        
       </Form>
