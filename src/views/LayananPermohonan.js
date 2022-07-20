@@ -8,7 +8,7 @@ import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 // import { data } from "autoprefixer";
 
-export default function LayananPermohonan() {
+export default function PelayananPublic() {
   return (
     <>
       <Navbar transparent />
@@ -86,10 +86,12 @@ export default function LayananPermohonan() {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
                     <center>
-                      <h4 className="text-2xl font-semibold">Pelaporan</h4>
+                      <h4 className="text-2xl font-semibold">
+                        Layanan Permohonan Bebas Temuan
+                      </h4>
 
                       <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
-                        Pengaduan Masyarakat
+                        Permohonan Bebas Temuan
                       </p>
                     </center>
                     <div className="relative w-full mb-3 mt-8">
@@ -97,12 +99,12 @@ export default function LayananPermohonan() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="full-name"
                       >
-                        NIK Pelapor
+                        NIP
                       </label>
                       <input
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="NIK Pelapor"
+                        placeholder="NIP Tanpa Spasi"
                       />
                     </div>
                     <div className="relative w-full mb-3">
@@ -110,12 +112,12 @@ export default function LayananPermohonan() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="email"
                       >
-                        Nama Pelapor
+                        Nama
                       </label>
                       <input
                         type="nama"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Nama Pelapor"
+                        placeholder="Nama Dengan Gelar"
                       />
                     </div>
 
@@ -124,12 +126,12 @@ export default function LayananPermohonan() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="email"
                       >
-                        Email Pelapor
+                        Email
                       </label>
                       <input
                         type="email"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Email Pelapor"
+                        placeholder="Email"
                       />
                     </div>
                     <div className="relative w-full mb-3">
@@ -137,35 +139,57 @@ export default function LayananPermohonan() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="email"
                       >
-                        Nama & Jabatan Pihak yang Dilaporkan
+                        No Telp.
                       </label>
                       <input
-                        type="email"
+                        type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Nama & Jabatan Pihak yang Dilaporkan"
+                        placeholder="No Telp / No Whatsapp"
                       />
                     </div>
 
-                    <div className="relative w-full mb-3">
+                    {/* <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
                       >
-                        Isi Pesan
+                        Pangkat Golongan
                       </label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Ketikan Isi Pesan Anda ..."
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Pangkat Golongan"
                       />
+                    </div> */}
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="golongan"
+                      >
+                        Pangkat Golongan
+                      </label>
+                      <select
+                        id="golongan"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      >
+                        <option disabled selected hidden>
+                          Pangkat Golongan
+                        </option>
+                        <option value="1">Pembina Utama Madya/IV.e</option>
+                        <option value="2">Pembina Utama/IV.d</option>
+                        <option value="3">Pembina Utama Muda/IV.c</option>
+                        <option value="4">Pembina Tk.I/IV.b</option>
+                        <option value="5">Pembina/IV.a</option>
+                      </select>
                     </div>
+
                     <div className="text-center mt-6">
                       <button
                         className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
                       >
-                        Kirim Pesan
+                        Kirim
                       </button>
                     </div>
                   </div>

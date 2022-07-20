@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { createPopper } from "@popperjs/core";
 
-
 // import { Fragment } from 'react'
 // import { Disclosure, Menu, Transition } from '@headlessui/react'
 // import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
@@ -29,8 +28,11 @@ export default function Navbar(props) {
       <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-
-          <img className="w-auto h-10 mr-3" src={process.env.PUBLIC_URL + '/banjar.png'} alt="Workflow" />
+            <img
+              className="w-auto h-10 mr-3"
+              src={process.env.PUBLIC_URL + "/banjar.png"}
+              alt="Workflow"
+            />
             {/* <Link
               className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
               to="/"
@@ -90,24 +92,23 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
-
-            <li className="flex items-center">
+              <li className="flex items-center">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="Beranda"
                 >
                   <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
-                  Beranda 
+                  Beranda
                 </a>
               </li>
 
-            <li className="flex items-center">
+              <li className="flex items-center">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="Profil"
                 >
                   <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
-                  Profil Inspektorat 
+                  Profil Inspektorat
                 </a>
               </li>
               <li className="flex items-center">
@@ -116,7 +117,7 @@ export default function Navbar(props) {
                   href="PembinaanPengawasan"
                 >
                   <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
-                  Pembinaan Pengawasan 
+                  Pembinaan Pengawasan
                 </a>
               </li>
               <li className="flex items-center">
@@ -138,7 +139,6 @@ export default function Navbar(props) {
                 </a>
               </li>
 
-
               <li className="flex items-center">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -155,21 +155,13 @@ export default function Navbar(props) {
                   href="Simwas"
                 >
                   <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
-                 Simwas
+                  Simwas
                 </a>
               </li>
-
-         
-
             </ul>
 
-
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-
-
-
-              
-            {/* <li className="flex items-center">
+              {/* <li className="flex items-center">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="/"
@@ -253,11 +245,6 @@ export default function Navbar(props) {
                 <PagesDropdown />
               </li> */}
 
-
-
-
-
-
               {/* <li className="flex items-center">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -299,9 +286,6 @@ export default function Navbar(props) {
                   <i className="fas fa-arrow-alt-circle-down"></i> Download
                 </button>
               </li> */}
-
-
-
             </ul>
           </div>
         </div>

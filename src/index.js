@@ -35,16 +35,14 @@ import LayananPengaduan from "views/LayananPengaduan";
 import LayananWBS from "views/LayananWBS";
 import LayananPermohonan from "views/LayananPermohonan";
 import Beranda from "views/Beranda";
-import LKform from "views/LKform";
-
+import TugasFungsi from "views/TugasFungsi";
+import StrukturOrganisasi from "views/StrukturOrganisasi";
+import InformasiDetail from "views/InformasiDetail";
+import Pegawai from "views/Pegawai";
+import ProdukHukum from "views/ProdukHukum";
 // import Informasi from "views/Informasi";
 
-
-
 // import Pb from "views/Pb";
-
-
-
 
 // multi step
 import { useState } from "react";
@@ -56,10 +54,6 @@ import Account from "./components/steps/Account";
 import Details from "./components/steps/Details";
 import Payment from "./components/steps/Payment";
 import Final from "./components/steps/Final";
-
-
-
-
 
 ReactDOM.render(
   <BrowserRouter>
@@ -75,7 +69,11 @@ ReactDOM.render(
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/slide" exact component={Slide} />
-      <Route path="/PembinaanPengawasan" exact component={PembinaanPengawasan} />
+      <Route
+        path="/PembinaanPengawasan"
+        exact
+        component={PembinaanPengawasan}
+      />
       <Route path="/Beranda" exact component={Beranda} />
       <Route path="/Berita" exact component={Berita} />
       <Route path="/Beritastat" exact component={Beritastat} />
@@ -89,19 +87,23 @@ ReactDOM.render(
       <Route path="/PelayananPublik" exact component={PelayananPublik} />
       <Route path="/profile" exact component={Profile} />
       <Route path="/profil" exact component={Profil} />
-      <Route path="/PenegakanIntegritas" exact component={PenegakanIntegritas} />
+      <Route
+        path="/PenegakanIntegritas"
+        exact
+        component={PenegakanIntegritas}
+      />
       <Route path="/LayananKonsultasi" exact component={LayananKonsultasi} />
       <Route path="/LayananPengaduan" exact component={LayananPengaduan} />
       <Route path="/LayananWBS" exact component={LayananWBS} />
       <Route path="/LayananPermohonan" exact component={LayananPermohonan} />
-      <Route path="/LKform" exact component={LKform} />
- 
- 
-     
+      <Route path="/TugasFungsi" exact component={TugasFungsi} />
+      <Route path="/StrukturOrganisasi" exact component={StrukturOrganisasi} />
+      <Route path="/InformasiDetail/:id" exact component={InformasiDetail} />
+      <Route path="/Pegawai" exact component={Pegawai} />
+      <Route path="/ProdukHukum" exact component={ProdukHukum} />
 
-      
       {/* <Route path="/Pb" exact component={Pb} /> */}
-      
+
       {/* <Route path="/Berita" exact component={BEr} /> */}
       <Route path="/grafik/kinerja-opd" component={KinerjaOpd} />
       <Route path="/" exact component={Simwas} />

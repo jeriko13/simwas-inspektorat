@@ -3,52 +3,12 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { API_URL } from "../config/config";
 // components
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-} from "react-router-dom";
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
-export default function Profil() {
-  // let { params } = useParams();
-  // const [keywords, setKeywords] = useState(params ? params : "");
-  // const [dataInformasi, setDataInformasi] = useState([]);
-  // const [startPage, setStartPage] = useState(1);
-  // const [totalRecordCount, setTotalRecordCount] = useState(0);
-
-  // const [dataPromosi, setDataPromosi] = useState([]);
-
-  // useEffect(() => {
-  //   checkInfo();
-  // }, []);
-
-  // const checkInfo = () => {
-  //   try {
-  //     Axios.get(
-  //       `${API_URL}/list/cv_berita?cmd=search&t=cv_berita&x_kategori_berita_id=${keywords}`
-  //     )
-  //       .then((res) => {
-  //         // console.log(res.data);
-  //         const data = res.data;
-  //         setTotalRecordCount(data.totalRecordCount);
-  //         setDataInformasi(data.cv_berita);
-  //         // console.log(data);
-  //       })
-  //       .catch(function (error) {
-  //         // handle error
-  //         console.log(error);
-  //       });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
+export default function TugasFungsi() {
   return (
     <>
       <Navbar transparent />
@@ -73,7 +33,7 @@ export default function Profil() {
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl"></h1>
                   <h2 className="mt-4 text-white font-semibold text-4xl">
-                    Profil Inspektorat
+                    Tugas dan Fungsi
                   </h2>
                   <p className="mt-4 text-lg text-blueGray-200"></p>
                   <p></p>
@@ -108,7 +68,7 @@ export default function Profil() {
               {/*  <div className="flex flex-wrap items-center mt-32"> */}
 
               <a
-                href="../InformasiDetail/1"
+                href="berita/2"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -146,7 +106,7 @@ export default function Profil() {
               </a>
 
               <a
-                href="../InformasiDetail/2"
+                href="../pemeriksaan"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -181,7 +141,7 @@ export default function Profil() {
               </a>
 
               <a
-                href="../InformasiDetail/3"
+                href="../layanan_konsultasi"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -216,7 +176,7 @@ export default function Profil() {
               </a>
 
               <a
-                href="../Pegawai"
+                href="../perencanaan"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -249,7 +209,7 @@ export default function Profil() {
               </a>
 
               <a
-                href="../InformasiDetail/5"
+                href="../pelaksanaan"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -284,7 +244,7 @@ export default function Profil() {
               </a>
 
               <a
-                href="../InformasiDetail/6"
+                href="../pelaporan"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -319,7 +279,7 @@ export default function Profil() {
               </a>
 
               <a
-                href="../ProdukHukum"
+                href="../tindak_lanjut"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >

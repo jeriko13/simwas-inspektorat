@@ -16,7 +16,9 @@ import 'semantic-ui-css/semantic.min.css'
 
 
 
+
 import { useHistory } from 'react-router';
+// import { data } from "autoprefixer";
 
 export default function LKform() {
   let history = useHistory();
@@ -32,7 +34,7 @@ export default function LKform() {
       email,
       pesan
     }).then(() => {
-      history.push('/LKform')
+      history.push('/LayananKonsultasi')
     })
   }
   return (
@@ -108,6 +110,17 @@ export default function LKform() {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
+
+
+                     <center>
+                      <h4 className="text-2xl font-semibold">
+                        Layanan Konsultasi
+                      </h4>
+
+                      <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
+                        Layanan Konsultasi Masyarakat
+                      </p>
+                    </center>
 
                     
   <Form>

@@ -180,11 +180,31 @@ export default function PelayananPublic() {
                       >
                         Kategori
                       </label>
-                      <input
+                      <select
+                        id="golongan"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      >
+                        <option disabled selected hidden>
+                          Kategori
+                        </option>
+                        <option value="1">
+                          Korupsi, kolusi, dan nepotisme
+                        </option>
+                        <option value="2">Penyalahgunaan Wewenang</option>
+                        <option value="3">Kecurangan (Fraud)</option>
+                        <option value="4">
+                          Perbuatan melanggar hukum dan peraturan internal
+                        </option>
+                        <option value="5">Penggelapan aset</option>
+                        <option value="6">Kepegawaian</option>
+                        <option value="7">Benturan Kepentingan</option>
+                        <option value="8">Lainnya</option>
+                      </select>
+                      {/* <input
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Kategori"
-                      />
+                      /> */}
                     </div>
 
                     <div className="relative w-full mb-3">

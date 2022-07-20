@@ -66,7 +66,7 @@ export default function PelayananPublic() {
           style={{ transform: "translateZ(0)" }}
         ></div>
         <section className="relative block py-24 lg:pt-0">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 relative">
             <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
@@ -97,7 +97,7 @@ export default function PelayananPublic() {
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="email"
+                        htmlFor="umur"
                       >
                         Umur
                       </label>
@@ -111,21 +111,21 @@ export default function PelayananPublic() {
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="email"
+                        htmlFor="ttl"
                       >
                         Tempat Tanggal Lahir
                       </label>
                       <input
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Email Pelapor"
+                        placeholder="Tempat Tanggal Lahir"
                       />
                     </div>
 
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="email"
+                        htmlFor="kewarganegaraan"
                       >
                         Kewarganegaraan
                       </label>
@@ -139,7 +139,7 @@ export default function PelayananPublic() {
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="email"
+                        htmlFor="jeniskelamin"
                       >
                         Jenis Kelamin
                       </label>
@@ -167,7 +167,7 @@ export default function PelayananPublic() {
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="email"
+                        htmlFor="pekerjaan"
                       >
                         Pekerjaan
                       </label>
@@ -181,7 +181,7 @@ export default function PelayananPublic() {
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="message"
+                        htmlFor="alamat"
                       >
                         Alamat/Tempat Tinggal
                       </label>
@@ -196,15 +196,42 @@ export default function PelayananPublic() {
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="message"
+                        htmlFor="nohp"
                       >
-                        Isi Pesan
+                        No. HP
                       </label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Ketikan Isi Pesan Anda ..."
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="No. HP"
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        Waktu Kejadian
+                      </label>
+                      <input
+                        type="date"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Pekerjaan"
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        Tempat Kejadian
+                      </label>
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Tempat Kejadian"
                       />
                     </div>
 
@@ -213,13 +240,13 @@ export default function PelayananPublic() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
                       >
-                        Isi Pesan
+                        Apa yang terjadi
                       </label>
                       <textarea
                         rows="4"
                         cols="80"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Ketikan Isi Pesan Anda ..."
+                        placeholder="Ketikan kronologi kejadian ..."
                       />
                     </div>
 
@@ -228,13 +255,13 @@ export default function PelayananPublic() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
                       >
-                        Isi Pesan
+                        Korban dan Terlapor
                       </label>
                       <textarea
                         rows="4"
                         cols="80"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Ketikan Isi Pesan Anda ..."
+                        placeholder="Ketikan nama korban dan terlapor"
                       />
                     </div>
 
@@ -243,13 +270,43 @@ export default function PelayananPublic() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
                       >
-                        Isi Pesan
+                        Bagaimana Kejadiannya
                       </label>
                       <textarea
                         rows="4"
                         cols="80"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Ketikan Isi Pesan Anda ..."
+                        placeholder="Bagaimana Kejadiannya ..."
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="message"
+                      >
+                        Dilaporkan
+                      </label>
+                      <textarea
+                        rows="4"
+                        cols="80"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="Dilaporkan"
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="message"
+                      >
+                        Bukti yang diserahkan
+                      </label>
+                      <textarea
+                        rows="4"
+                        cols="80"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="Bukti yang diserahkan"
                       />
                     </div>
 
