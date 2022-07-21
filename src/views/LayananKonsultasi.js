@@ -146,10 +146,10 @@ export default function LKform() {
                           </label>
                           <input
                             type="nama"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" required
                             placeholder="Nama Lengkap"
-                            name="nama"
-                            onChange={(e) => setNama(e.target.value)}
+                            name="nama" 
+                            onChange={(e) => setNama(e.target.value)} 
                           />
                         </div>
 
@@ -162,7 +162,7 @@ export default function LKform() {
                           </label>
                           <input
                             type="email"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" required 
                             placeholder="Email"
                             name="email"
                             onChange={(e) => setEmail(e.target.value)}
@@ -178,7 +178,7 @@ export default function LKform() {
                           </label>
                           <input
                             type="email"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" required
                             placeholder="Alamat"
                           />
                         </div>
@@ -192,7 +192,7 @@ export default function LKform() {
                           </label>
                           <input
                             type="email"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" required
                             placeholder="No HP"
                           />
                         </div>
@@ -207,7 +207,7 @@ export default function LKform() {
                           <textarea
                             rows="4"
                             cols="80"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" required
                             placeholder="Hal yang dikonsultasikan ..."
                             name="pesan"
                             onChange={(e) => setPesan(e.target.value)}
@@ -215,7 +215,7 @@ export default function LKform() {
                         </div>
                         <div className="text-center mt-6">
                           <button
-                            className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                            className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" required
                             type="submit"
                             onClick={sendDataToAPI}
                           >

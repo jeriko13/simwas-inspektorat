@@ -31,7 +31,7 @@ import Beritastat from "views/Beritastat";
 import BeritaDetail from "views/BeritaDetail";
 import PenegakanIntegritas from "views/PenegakanIntegritas";
 import LayananKonsultasi from "views/LayananKonsultasi";
-
+import ContactForm from "components/ContactForm";
 import LaporanKonsultasi from "views/LaporanKonsultasi";
 import LayananPengaduan from "views/LayananPengaduan";
 import LayananWBS from "views/LayananWBS";
@@ -104,7 +104,7 @@ ReactDOM.render(
       <Route path="/InformasiDetail/:id" exact component={InformasiDetail} />
       <Route path="/Pegawai" exact component={Pegawai} />
       <Route path="/ProdukHukum" exact component={ProdukHukum} />
-
+      <Route path="/ContactForm" exact component={ContactForm} />
       {/* <Route path="/Pb" exact component={Pb} /> */}
 
       {/* <Route path="/Berita" exact component={BEr} /> */}
