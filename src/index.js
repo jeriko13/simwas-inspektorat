@@ -31,10 +31,9 @@ import Beritastat from "views/Beritastat";
 import BeritaDetail from "views/BeritaDetail";
 import PenegakanIntegritas from "views/PenegakanIntegritas";
 import LayananKonsultasi from "views/LayananKonsultasi";
-import ContactForm from "components/ContactForm";
-import LaporanKonsultasi from "views/LaporanKonsultasi";
 import LayananPengaduan from "views/LayananPengaduan";
 import LayananWBS from "views/LayananWBS";
+import LayananWBSform from "views/LayananWBSform";
 import LayananPermohonan from "views/LayananPermohonan";
 import Beranda from "views/Beranda";
 import TugasFungsi from "views/TugasFungsi";
@@ -42,6 +41,9 @@ import StrukturOrganisasi from "views/StrukturOrganisasi";
 import InformasiDetail from "views/InformasiDetail";
 import Pegawai from "views/Pegawai";
 import ProdukHukum from "views/ProdukHukum";
+import Program from "views/Program";
+import Tipikor from "views/Tipikor";
+import Email from "views/Email";
 // import Informasi from "views/Informasi";
 
 // import Pb from "views/Pb";
@@ -94,21 +96,25 @@ ReactDOM.render(
         exact
         component={PenegakanIntegritas}
       />
-       <Route path="/LaporanKonsultasi" exact component={LaporanKonsultasi} />
       <Route path="/LayananKonsultasi" exact component={LayananKonsultasi} />
       <Route path="/LayananPengaduan" exact component={LayananPengaduan} />
       <Route path="/LayananWBS" exact component={LayananWBS} />
+      <Route path="/LayananWBSform" exact component={LayananWBSform} />
       <Route path="/LayananPermohonan" exact component={LayananPermohonan} />
-      <Route path="/TugasFungsi" exact component={TugasFungsi} />
+      <Route path="/tugasfungsi" exact component={TugasFungsi} />
       <Route path="/StrukturOrganisasi" exact component={StrukturOrganisasi} />
-      <Route path="/InformasiDetail/:id" exact component={InformasiDetail} />
+      <Route path="/informasidetail/:id" exact component={InformasiDetail} />
       <Route path="/Pegawai" exact component={Pegawai} />
       <Route path="/ProdukHukum" exact component={ProdukHukum} />
-      <Route path="/ContactForm" exact component={ContactForm} />
+      <Route path="/Program" exact component={Program} />
+      <Route path="/Tipikor" exact component={Tipikor} />
+      <Route path="/Email" exact component={Email} />
+
       {/* <Route path="/Pb" exact component={Pb} /> */}
 
       {/* <Route path="/Berita" exact component={BEr} /> */}
       <Route path="/grafik/kinerja-opd" component={KinerjaOpd} />
+      <Route path="/Simwas" exact component={Simwas} />
       <Route path="/" exact component={Simwas} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />

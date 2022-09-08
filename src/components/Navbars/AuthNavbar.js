@@ -26,56 +26,16 @@ export default function Navbar(props) {
   return (
     <>
       <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
+        
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <img
-              className="w-auto h-10 mr-3"
-              src={process.env.PUBLIC_URL + "/banjar.png"}
-              alt="Workflow"
-            />
-            {/* <Link
-              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <Link
+              className="text-white text-sm font-bold leading-relaxed mr-4 py-2 whitespace-nowrap uppercase flex items-center"
               to="/"
             >
-              Beranda
+              <img className="w-auto h-10 mr-3" src={process.env.PUBLIC_URL + '/banjar.png'} alt="Workflow" />
+              PEMERINTAHAN KOTA BANJAR <br></br>INSPEKTORAT DAERAH
             </Link>
-
-                    <Link
-              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-              to="Profil"
-            >
-              Profil Inspektorat
-            </Link> */}
-            {/* <Link
-              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-              to="PembinaanPengawasan"
-            >
-              Pembinaan Pengawasan
-            </Link>
-            <Link
-              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-              to="Reformasi"
-            >
-              Reformasi Birokrasi & Pencegahan Tipikor
-
-            
-            </Link>
-
-            <Link
-              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-              to="PenegakanIntegritas"
-            >
-            
-              Penegakan Integritas
-            </Link>
-            <Link
-              className="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-              to="PelayananPublic"
-            >
-            
-              Pelayanan Publik
-            </Link> */}
-
             <button
               className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
@@ -91,10 +51,10 @@ export default function Navbar(props) {
             }
             id="example-navbar-warning"
           >
-            <ul className="flex flex-col lg:flex-row list-none mr-auto">
+            {/* <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
                 <a
-                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer"
                   href="Beranda"
                 >
                   <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
@@ -149,7 +109,7 @@ export default function Navbar(props) {
                 </a>
               </li>
 
-              <li className="flex items-center">
+              <li className="flex items-end">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="Simwas"
@@ -158,6 +118,82 @@ export default function Navbar(props) {
                   Simwas
                 </a>
               </li>
+            </ul>
+ */}
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              
+              <li className="flex items-center">
+              <a
+                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="Beranda"
+                >
+                  <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
+                  Beranda
+                </a>
+              </li>
+
+              <li className="flex items-center">
+              <a
+                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="Profil"
+                >
+                  <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
+                  Profil Inspektorat
+                </a>
+              </li>
+
+              <li className="flex items-center">
+              <a
+                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="PembinaanPengawasan"
+                >
+                  <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
+                  Pembinaan Pengawasan
+                </a>
+              </li>
+
+              <li className="flex items-center">
+              <a
+                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="Reformasi"
+                >
+                  <i className="lg:text-blueGray-200 text-blueGray-400 far text-lg leading-lg mr-2" />{" "}
+                  Reformasi Birokrasi & Pencegahan Tipikor
+                </a>
+              </li>
+
+              <li className="flex items-center">
+              <a
+                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="PenegakanIntegritas"
+                >
+                  <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
+                  Penegakan Integritas
+                </a>
+              </li>
+
+              <li className="flex items-center">
+              <a
+                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="PelayananPublik"
+                >
+                  <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
+                  Pelayanan Publik
+                </a>
+              </li>
+
+              <li className="flex items-center">
+              <a
+                  className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                  href="/Simwas"
+                >
+                  <i className="lg:text-blueGray-200 text-blueGray-400  text-lg leading-lg mr-2" />{" "}
+                  Simwas
+                </a>
+              </li>
+
+            
+
             </ul>
 
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">

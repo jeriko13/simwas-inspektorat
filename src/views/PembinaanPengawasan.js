@@ -3,17 +3,19 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { API_URL } from "../config/config";
 // components
-
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/Nav.js";
+//import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
 export default function PembinaanPengawasan() {
   return (
     <>
+    <br></br>
+    <br></br>
       <Navbar transparent />
       <main>
-        <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+        <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
@@ -68,7 +70,7 @@ export default function PembinaanPengawasan() {
               {/*  <div className="flex flex-wrap items-center mt-32"> */}
 
               <a
-                href="berita/2"
+                href="/informasidetail/8"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -104,7 +106,7 @@ export default function PembinaanPengawasan() {
               </a>
 
               <a
-                href="berita/3"
+                href="/informasidetail/9"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -137,7 +139,7 @@ export default function PembinaanPengawasan() {
               </a>
 
               <a
-                href="berita/3"
+                href="/informasidetail/10"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -172,7 +174,7 @@ export default function PembinaanPengawasan() {
               </a>
 
               <a
-                href="berita/2"
+                href="/informasidetail/11"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -205,7 +207,7 @@ export default function PembinaanPengawasan() {
               </a>
 
               <a
-                href="berita/1"
+                href="/informasidetail/12"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -239,8 +241,8 @@ export default function PembinaanPengawasan() {
                 </div>
               </a>
 
-              <a
-                href="berita/3"
+      {/*         <a
+                href="/informasidetail/13"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -275,7 +277,7 @@ export default function PembinaanPengawasan() {
               </a>
 
               <a
-                href="berita/2"
+                href="/informasidetail/14"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >
@@ -307,7 +309,7 @@ export default function PembinaanPengawasan() {
                     </center>
                   </blockquote>
                 </div>
-              </a>
+              </a> */}
             </div>
           </div>
         </section>

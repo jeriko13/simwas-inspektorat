@@ -3,8 +3,8 @@ import React, {useState, useEffect} from "react";
 import Axios from 'axios';
 import {API_URL} from '../config/config';
 // components
-
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/Nav.js";
+// import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
@@ -15,9 +15,13 @@ export default function Slide() {
   
     return (
       <>
+          <br></br>
+          <br></br>
+          <br></br>
+          
         <Navbar transparent />
         <main>
-          <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+          <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
             <div
               className="absolute top-0 w-full h-full bg-center bg-cover"
               style={{
@@ -40,10 +44,10 @@ export default function Slide() {
                 <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                   <div className="pr-12">
                     <h1 className="text-white font-semibold text-5xl">
-                    Selamat Datang di 
+                    Simwas Backoffice
                     </h1>
                     <h2 className="mt-4 text-white font-semibold text-4xl">
-                    Sistem Informasi Manajemen Pengawasan (Si-Macan)
+                
                     </h2>
                     <p className="mt-4 text-lg text-blueGray-200">
                     
@@ -335,6 +339,37 @@ export default function Slide() {
 
                       <center><h4 className="text-xl font-bold text-white">
                          Setting
+                     </h4>  </center>
+                  
+                    </blockquote>
+                  </div>
+                  </a>
+
+                  <a href="../inspektorat_api" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" target="_blank"
+                  >    
+            
+                  <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
+                
+                  <img
+                        alt="..."
+                        src={require("assets/img/pemeriksaan.jpg").default}
+                        className="w-full align-middle rounded-t-lg"
+                      />
+                    <blockquote className="relative p-8 mb-4">
+                      <svg
+                        preserveAspectRatio="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 583 95"
+                        className="absolute left-0 w-full block h-95-px -top-94-px"
+                      >
+                        <polygon
+                          points="-30,95 583,95 583,65"
+                          className="text-lightBlue-500 fill-current"
+                        ></polygon>
+                      </svg>
+
+                      <center><h4 className="text-xl font-bold text-white">
+                         Setting Website
                      </h4>  </center>
                   
                     </blockquote>

@@ -10,8 +10,8 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
-
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/Nav.js";
+// import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
@@ -51,9 +51,11 @@ export default function Profil() {
 
   return (
     <>
+    <br></br>
+    <br></br>
       <Navbar transparent />
       <main>
-        <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+        <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
@@ -65,6 +67,20 @@ export default function Profil() {
               id="blackOverlay"
               className="w-full h-full absolute opacity-75 bg-black"
             ></span>
+             <svg
+              className="absolute bottom-0 overflow-hidden "
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              version="1.1"
+              viewBox="0 0 2560 100"
+              x="0"
+              y="0"
+            >
+              <polygon
+                className="text-white text-blueGray-200 fill-current "
+                points="2560 0 2560 100 0 100"
+              ></polygon>
+            </svg>
           </div>
 
           <div className="container relative mx-auto">
@@ -81,24 +97,12 @@ export default function Profil() {
               </div>
             </div>
           </div>
+
           <div
-            className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
+            className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
             style={{ transform: "translateZ(0)" }}
           >
-            <svg
-              className="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon
-                className="text-blueGray-200 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
+            
           </div>
         </div>
 
@@ -108,7 +112,7 @@ export default function Profil() {
               {/*  <div className="flex flex-wrap items-center mt-32"> */}
 
               <a
-                href="../InformasiDetail/1"
+                href="../informasidetail/1"
                 className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                 type="button"
               >

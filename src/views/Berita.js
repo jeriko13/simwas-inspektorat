@@ -10,8 +10,8 @@ import {
   Link,
   useParams,
 } from "react-router-dom";
-
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/Nav.js";
+// import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
@@ -52,68 +52,54 @@ export default function Berita() {
       console.log(error);
     }
   };
+  console.log(dataInformasi);
 
-  // const handlePagination = (btn) => {
-  //   if (btn == "next") {
-  //     try {
-  //       Axios.get(`${API_URL}/list/cv_berita?start=${startPage + 7}`)
-  //         .then(res => {
-  //           const data = res.data.cv_berita;
-  //           console.log(data);
-  //           setDataInformasi(data);
-  //           setStartPage(startPage + 7 );
+  const handlePagination = (btn) => { 
+    if (btn == "next") {
+      try {
+        Axios.get(`${API_URL}/api/list/cv_informasi?start=${startPage + 7}`)
+          .then(res => {
+            const data = res.data.cv_informasi;
+            console.log(data);
+            setDataInformasi(data);
+            setStartPage(startPage + 7 );
 
-  //         })
-  //         .catch(function (error) {
-  //           // handle error
-  //           console.log(error);
-  //         })
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   } else {
-  //     try {
-  //       Axios.get(`${API_URL}/list/cv_berita?start=${startPage - 7}`)
-  //         .then(res => {
-  //           const data = res.data.cv_berita;
-  //           console.log(data);
-  //           setDataInformasi(data);
-  //           setStartPage(startPage - 7 );
-  //         })
-  //         .catch(function (error) {
-  //           // handle error
-  //           console.log(error);
-  //         })
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        Axios.get(`${API_URL}/api/list/cv_informasi?start=${startPage - 7}`)
+          .then(res => {
+            const data = res.data.cv_informasi;
+            console.log(data);
+            setDataInformasi(data);
+            setStartPage(startPage - 7 );
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+      } catch (error) {
+        console.log(error);
+      }
+    }
+   
+  }
 
-  // }
-
-  // const checkPromo = () => {
-  //   try {
-  //     Axios.get(`${API_URL}/list/cv_promosi`)
-  //       .then(res => {
-
-  //         const data = res.data;
-  //           setDataPromosi(data.cv_promosi);
-
-  //       })
-  //       .catch(function (error) {
-  //         // handle error
-  //         console.log(error);
-  //       })
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return (
     <>
+    <br></br>
+    <br></br>
       <Navbar transparent />
       <main>
-        <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+      <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
@@ -131,7 +117,8 @@ export default function Berita() {
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
                   <h1 className="text-white font-semibold text-5xl">
-                    Halaman Berita
+              
+                  Halaman Berita
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
                     {/* Aplikasi Layanan Promosi, dan Informasi DBHCHT */}
@@ -160,19 +147,21 @@ export default function Berita() {
               ></polygon>
             </svg>
           </div>
+          
         </div>
+       
 
-        <section className="pb-20 bg-blueGray-200 -mt-24">
+<section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap">
-              {dataPromosi.map((hasil) => {
-                return <a></a>;
-              })}
-            </div>
-
-            <div className="flex flex-wrap items-center mt-32">
+            <div className="flex flex-wrap justify-center lg:-mt-50 -mt-20">
+              <div className="w-full lg:w-full px-4">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white">
+                  <div className="flex-auto p-5 lg:p-1">
+              
               {dataInformasi.map((hasil) => {
                 return (
+
+                  
                   <a
                     href={`/beritadetail/${hasil.berita_id}`}
                     className="w-full md:w-4/12 px-2 mr-auto ml-auto"
@@ -181,9 +170,10 @@ export default function Berita() {
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
                       <img
                         alt="..."
-                        src={hasil.gambar}
-                        className="w-full align-middle rounded-t-lg"
+                        src={`https://simwas.inspektorat.banjarkota.go.id/web_upload/files/${hasil.gambar}`}
+                        className="w-full bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-5"
                       />
+                      <br></br>
                       <blockquote className="relative p-8 mb-4">
                         <svg
                           preserveAspectRatio="none"
@@ -208,8 +198,19 @@ export default function Berita() {
                   </a>
                 );
               })}
+
+           {/*    {
+                  (totalRecordCount - startPage < 6) ? <button onClick={() => handlePagination('prev')} className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 flex-auto rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="button">Prev</button> : ""
+                } */}
+            {/*   {
+                  (startPage == 1) ? <button onClick={() => handlePagination('next')} className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 flex-auto rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                  type="button" >Next</button> : ""
+                } */}
+
             </div>
           </div>
+          </div></div></div>
         </section>
 
         <section className="relative py-20">

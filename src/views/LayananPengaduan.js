@@ -1,19 +1,106 @@
-import React from "react";
-//import { Link } from "react-router-dom";
-// import Axios from 'axios';
-
-// components
-
-import Navbar from "components/Navbars/AuthNavbar.js";
+import React, { useEffect, useState,useRef } from "react";
+import { Form, Button } from "semantic-ui-react";
+import axios from "axios";
+import "../App.css";
+import Navbar from "components/Navbars/Nav.js";
+// import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import "semantic-ui-css/semantic.min.css";
+import { API_URL } from "../config/config";
+import emailjs from "emailjs-com";
+
+import { useHistory } from "react-router";
 // import { data } from "autoprefixer";
 
 export default function PelayananPublic() {
+  let history = useHistory();
+  const [nama, setNama] = useState("");
+  const [tgl, ] = useState("");
+  const [umur, setUmur] = useState("");
+  const [ttl, setTtl] = useState("");
+  const [lahir, ] = useState("");
+  const [kewarganegaraan, setKewarganegaraan] = useState("");
+  const [jenis_kelamin, setJk] = useState("");
+  const [agama, setAgama] = useState("");
+  const [pekerjaan, setPekerjaan] = useState("");
+  const [alamat, setAlamat] = useState("");
+  const [nomor_hp, setNohp] = useState("");
+  const [waktu_kejadian, setWaktu] = useState("");
+  const [tempat_kejadian, setTempat] = useState("");
+  const [apa_yang_terjadi, setTerjadi] = useState("");
+  const [siapa_yang_menjadi_korban, setKorban] = useState("");
+  const [siapa_yang_terlapor, setTerlapor] = useState("");
+  const [kronologis_kejadian, setKronologi] = useState("");
+  const [bukti_yang_diserahkan, setBukti] = useState("");
+  const [upload_bukti, ] = useState("");
+  const [penerima_laporan, setPenerima] = useState("");
+  const [nomor_lhp, ] = useState("");
+  const [jenis_rekomendasi, ] = useState("");
+  const [keterangan, ] = useState("");
+  const form = useRef();
+
+  const [showAlert, setShowAlert] = React.useState(true);
+
+  useEffect(() => {
+    setShowAlert(false);
+  }, [0]);
+
+  const sendDataToAPI = () => {
+    axios
+      .post(
+        `${API_URL}/add/cv_pengaduan`,
+        {
+          nama,
+          tgl,
+          umur,
+          ttl,
+          lahir,
+          kewarganegaraan,
+          jenis_kelamin,
+          agama,
+          pekerjaan,
+          alamat,
+          nomor_hp,
+          waktu_kejadian,
+          tempat_kejadian,
+          apa_yang_terjadi,
+          siapa_yang_menjadi_korban,
+          siapa_yang_terlapor,
+          kronologis_kejadian,
+          bukti_yang_diserahkan,
+          upload_bukti,
+          penerima_laporan,
+          nomor_lhp,
+          jenis_rekomendasi,
+          keterangan,
+        }
+      )
+      .then(() => {
+        history.push("/LayananPengaduan");
+        setShowAlert(true);
+      });
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('gmail', 'template_dxsi54e', e.target, 'AzSRlohQYP291ZugP')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+     
+  };
+
   return (
     <>
+      <br></br>
+    <br></br>
+    <br></br>
       <Navbar transparent />
       <main>
-        <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+      <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
@@ -26,16 +113,17 @@ export default function PelayananPublic() {
               className="w-full h-full absolute opacity-75 bg-black"
             ></span>
           </div>
-
           <div className="container relative mx-auto">
             <div className="items-center flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
-                  <h1 className="text-white font-semibold text-5xl"></h1>
-                  <h2 className="mt-4 text-white font-semibold text-4xl">
-                    Layanan Pengaduan Masyarakat
-                  </h2>
-                  <p className="mt-4 text-lg text-blueGray-200"></p>
+                  <h1 className="text-white font-semibold text-5xl">
+                  
+                  Layanan Pengaduan Masyarakat
+                  </h1>
+                  <p className="mt-4 text-lg text-blueGray-200">
+                    {/* Aplikasi Layanan Promosi, dan Informasi DBHCHT */}
+                  </p>
                   <p></p>
                 </div>
               </div>
@@ -60,26 +148,33 @@ export default function PelayananPublic() {
               ></polygon>
             </svg>
           </div>
+          
         </div>
-        <div
-          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-          style={{ transform: "translateZ(0)" }}
-        ></div>
-        <section className="relative block py-24 lg:pt-0">
-          <div className="container mx-auto px-4 relative">
-            <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
-              <div className="w-full lg:w-6/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
-                  <div className="flex-auto p-5 lg:p-10">
-                    <center>
-                      <h4 className="text-2xl font-semibold">
-                        Layanan Pengaduan Masyarakat
-                      </h4>
+     
+        <section className="pb-20 bg-blueGray-200 -mt-24">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center lg:-mt-50 -mt-20">
+              <div className="w-full lg:w-full px-4">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white">
+                  <div className="flex-auto p-5 lg:p-1">
 
-                      <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
-                        LAPORAN PENGADUAN MASYARAKAT
-                      </p>
-                    </center>
+
+                  {showAlert ? (
+                      <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-lightBlue-500">
+                        <span className="text-xl inline-block mr-5 align-middle">
+                          <i className="fas fa-bell" />
+                        </span>
+                        <span className="inline-block align-middle mr-8">
+                          <b className="capitalize">Berhasil!</b>
+                        </span>
+                        <button className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                          <a href="PelayananPublik">Kembali</a>
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                    
+                    <form ref={form} onSubmit={sendEmail}>
                     <div className="relative w-full mb-3 mt-8">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -89,8 +184,10 @@ export default function PelayananPublic() {
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Nama"
+                        name="nama"
+                        onChange={(e) => setNama(e.target.value)}
                       />
                     </div>
 
@@ -102,9 +199,11 @@ export default function PelayananPublic() {
                         Umur
                       </label>
                       <input
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        type="number"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Umur"
+                        name="umur"
+                        onChange={(e) => setUmur(e.target.value)}
                       />
                     </div>
 
@@ -113,12 +212,14 @@ export default function PelayananPublic() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="ttl"
                       >
-                        Tempat Tanggal Lahir
+                        Tanggal Lahir
                       </label>
                       <input
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Tempat Tanggal Lahir"
+                        type="date"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Tanggal Lahir"
+                        name="ttl"
+                        onChange={(e) => setTtl(e.target.value)}
                       />
                     </div>
 
@@ -131,8 +232,10 @@ export default function PelayananPublic() {
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Kewarganegaraan"
+                        name="kewarganegaraan"
+                        onChange={(e) => setKewarganegaraan(e.target.value)}
                       />
                     </div>
 
@@ -143,24 +246,43 @@ export default function PelayananPublic() {
                       >
                         Jenis Kelamin
                       </label>
-                      <input
+                      <select
+                        id="jenis_kelamin"
+                        name="jenis_kelamin"
+                        onChange={(e) => setJk(e.target.value)}
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      >
+                        <option disabled selected hidden>
+                          jenis Kelamin
+                        </option>
+                        <option value="Laki-laki">
+                          Laki-laki
+                        </option>
+                        <option value="Perempuan">Perempuan</option>
+                        
+                      </select>
+                      {/* <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Jenis Kelamin"
-                      />
+                        name="jeniskelamin"
+                        onChange={(e) => setJk(e.target.value)}
+                      /> */}
                     </div>
 
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="email"
+                        htmlFor="agama"
                       >
                         Agama
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Agama"
+                        name="agama"
+                        onChange={(e) => setAgama(e.target.value)}
                       />
                     </div>
 
@@ -173,8 +295,10 @@ export default function PelayananPublic() {
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Pekerjaan"
+                        name="pekerjaan"
+                        onChange={(e) => setPekerjaan(e.target.value)}
                       />
                     </div>
 
@@ -188,8 +312,10 @@ export default function PelayananPublic() {
                       <textarea
                         rows="4"
                         cols="80"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Alamat/Tempat Tinggal"
+                        name="alamat"
+                        onChange={(e) => setAlamat(e.target.value)}
                       />
                     </div>
 
@@ -201,9 +327,11 @@ export default function PelayananPublic() {
                         No. HP
                       </label>
                       <input
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        type="number"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="No. HP"
+                        name="no"
+                        onChange={(e) => setNohp(e.target.value)}
                       />
                     </div>
 
@@ -216,8 +344,10 @@ export default function PelayananPublic() {
                       </label>
                       <input
                         type="date"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Pekerjaan"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Waktu Kejadian"
+                        name="waktu"
+                        onChange={(e) => setWaktu(e.target.value)}
                       />
                     </div>
 
@@ -230,8 +360,10 @@ export default function PelayananPublic() {
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Tempat Kejadian"
+                        name="tempat"
+                        onChange={(e) => setTempat(e.target.value)}
                       />
                     </div>
 
@@ -245,8 +377,10 @@ export default function PelayananPublic() {
                       <textarea
                         rows="4"
                         cols="80"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Ketikan kronologi kejadian ..."
+                        name="kejadian"
+                        onChange={(e) => setTerjadi(e.target.value)}
                       />
                     </div>
 
@@ -257,11 +391,28 @@ export default function PelayananPublic() {
                       >
                         Korban dan Terlapor
                       </label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Ketikan nama korban dan terlapor"
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="Korban"
+                        name="korban"
+                        onChange={(e) => setKorban(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="message"
+                      >
+                        Terlapor
+                      </label>
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="terlapor"
+                        name="terlapor"
+                        onChange={(e) => setTerlapor(e.target.value)}
                       />
                     </div>
 
@@ -275,8 +426,10 @@ export default function PelayananPublic() {
                       <textarea
                         rows="4"
                         cols="80"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Bagaimana Kejadiannya ..."
+                        name="kronologi"
+                        onChange={(e) => setKronologi(e.target.value)}
                       />
                     </div>
 
@@ -290,8 +443,10 @@ export default function PelayananPublic() {
                       <textarea
                         rows="4"
                         cols="80"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Dilaporkan"
+                        name="dilaporkan"
+                        onChange={(e) => setPenerima(e.target.value)}
                       />
                     </div>
 
@@ -300,24 +455,33 @@ export default function PelayananPublic() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
                       >
-                        Bukti yang diserahkan
+                        Bukti yang diserahkan (Link Google Drive Anyone with the link)
                       </label>
                       <textarea
                         rows="4"
                         cols="80"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Bukti yang diserahkan"
+                        name="bukti"
+                        onChange={(e) => setBukti(e.target.value)}
                       />
                     </div>
+                    <input className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="submit" value="Kirim Pesan" onClick={sendDataToAPI}/>
+                        </form>
 
-                    <div className="text-center mt-6">
+                    {/* <div className="text-center mt-6">
                       <button
                         className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
+                        type="submit"
+                        onClick={sendDataToAPI}
                       >
                         Kirim Pesan
                       </button>
+                    </div> */}
+
                     </div>
+                    )}
                   </div>
                 </div>
               </div>

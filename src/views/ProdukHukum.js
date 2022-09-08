@@ -11,13 +11,16 @@ import {
   useParams,
 } from "react-router-dom";
 
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/Nav.js";
+// import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
 export default function Pegawai() {
   let { id } = useParams();
 
   const [dataInformasi, setDataInformasi] = useState([]);
+  const [dataParagraf, setDataParagraf] = useState([]);
+
 
   useEffect(() => {
     checkInfo();
@@ -26,10 +29,11 @@ export default function Pegawai() {
   const checkInfo = () => {
     console.log(id);
     try {
-      Axios.get(`${API_URL}/list/t_produk_hukum`)
+      Axios.get(`${API_URL}/list/cv_produk_hukum`)
         .then((res) => {
           const data = res.data;
-          setDataInformasi(data.t_produk_hukum);
+          setDataInformasi(data.cv_produk_hukum);
+          setDataParagraf(data.cv_produk_hukum.nama.split(String.fromCharCode(13)))
           console.log(data);
         })
         .catch(function (error) {
@@ -42,22 +46,39 @@ export default function Pegawai() {
   };
   return (
     <>
+    <br></br>
+    <br></br>
+    <br></br>
       <Navbar transparent />
       <main className="informasi-page">
-        <section className="relative block h-500-px">
+      <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
               backgroundImage:
                 "url('https://drive.google.com/uc?export=view&id=1WeIQcIEB6Tclb8_A7RZ30a1YVjhLWYkF')",
-              // https://drive.google.com/uc?export=view&id=1WeIQcIEB6Tclb8_A7RZ30a1YVjhLWYkF
-              // https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80
             }}
           >
             <span
               id="blackOverlay"
-              className="w-full h-full absolute opacity-50 bg-black"
+              className="w-full h-full absolute opacity-75 bg-black"
             ></span>
+          </div>
+          <div className="container relative mx-auto">
+            <div className="items-center flex flex-wrap">
+              <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+                <div className="pr-12">
+                  <h1 className="text-white font-semibold text-5xl">
+              
+                 {/*  Whistleblowing System */}
+                  </h1>
+                  <p className="mt-4 text-lg text-blueGray-200">
+                    {/* Aplikasi Layanan Promosi, dan Informasi DBHCHT */}
+                  </p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
           </div>
           <div
             className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
@@ -73,20 +94,21 @@ export default function Pegawai() {
               y="0"
             >
               <polygon
-                className="text-blueGray-800 fill-current"
+                className="text-blueGray-200 fill-current"
                 points="2560 0 2560 100 0 100"
               ></polygon>
             </svg>
           </div>
-        </section>
+          
+        </div>
 
-        <section className="relative py-10 bg-blueGray-800">
+        <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-              <div className="px-6">
-                <div className="flex flex-wrap justify-center">
-                  <div className="w-full lg:w-2/12 px-4 lg:order-2 flex justify-center">
-                    <div className="relative">
+            <div className="flex flex-wrap justify-center lg:-mt-50 -mt-20">
+              <div className="w-full lg:w-full px-4">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white">
+                  <div className="flex-auto p-5 lg:p-1">
+              {/*       <div className="relative">
                       <img
                         alt="..."
                         src={
@@ -95,7 +117,7 @@ export default function Pegawai() {
                         className="w-full align-middle rounded-t-lg"
                       />
                       <div></div>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="text-center mt-12">
@@ -111,14 +133,14 @@ export default function Pegawai() {
                       <thead>
                         <tr>
                           <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                            File
+                            Nama
                           </th>
                           <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                             Link
                           </th>
-                          <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                          {/* <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                             Keterangan
-                          </th>
+                          </th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -126,20 +148,24 @@ export default function Pegawai() {
                         {dataInformasi.map((item, key) => (
                           <tr>
                             <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                              {item.file}
+                              {item.nama}
                             </th>
-                            <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                            <a href={`${item.link}`} target="blank" className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
                               {item.link}
-                            </th>
+                            </a>
                             <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                              {item.keterangan}
+                              {/* {item.keterangan} */}
                             </th>
                           </tr>
                         ))}
                       </tbody>
                     </table>
+                    
                   </div>
+                  
                 </div>
+
+               
               </div>
             </div>
           </div>

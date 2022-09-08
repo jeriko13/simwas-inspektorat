@@ -3,8 +3,8 @@ import React, {useState, useEffect} from "react";
 import Axios from 'axios';
 import {API_URL} from '../config/config';
 // components
-
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/Nav.js";
+//import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
@@ -15,9 +15,11 @@ export default function Index() {
   
     return (
       <>
+      <br></br>
+      <br></br>
         <Navbar transparent />
         <main>
-          <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+          <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
             <div
               className="absolute top-0 w-full h-full bg-center bg-cover"
               style={{
@@ -86,41 +88,9 @@ export default function Index() {
 
             
 
-                  <a href="berita/2" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
-                  >    
-            
-                  <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
-                
-                  <img
-                        alt="..."
-                        src={'https://img.freepik.com/free-vector/flat-feedback-concept-illustration_23-2148952085.jpg?size=626&ext=jpg&uid=R71395593&ga=GA1.2.1555370712.1654583136'}
-                        className="w-full align-middle rounded-t-lg"
-                      />
-                    <blockquote className="relative p-8 mb-4">
-                      <svg
-                        preserveAspectRatio="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 583 95"
-                        className="absolute left-0 w-full block h-95-px -top-94-px"
-                      >
-                        <polygon
-                          points="-30,95 583,95 583,65"
-                          className="text-lightBlue-500 fill-current"
-                        ></polygon>
-                      </svg>
+                  {/*  */}
 
-                      <center><h4 className="text-xl font-bold text-white">
-                      Survey Penilaian Integritas
-                     </h4> </center> 
-                      {/* <p className="text-md font-light mt-2 text-white">
-                       isi
-                      </p> */}
-                  
-                    </blockquote>
-                  </div>
-                  </a>
-
-                  <a href="../pemeriksaan" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+                  <a href="/informasidetail/21" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -152,7 +122,7 @@ export default function Index() {
                   </div>
                   </a>
 
-                  <a href="../layanan_konsultasi" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+                  <a href="/informasidetail/22" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -184,7 +154,7 @@ export default function Index() {
                   </div>
                   </a>
 
-                  <a href="../perencanaan" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
+             {/*      <a href="berita/18" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -216,9 +186,9 @@ export default function Index() {
                   
                     </blockquote>
                   </div>
-                  </a>
+                  </a> */}
 
-                  <a href="../pelaksanaan" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+                  <a href="/informasidetail/23" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">

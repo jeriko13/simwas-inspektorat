@@ -1,6 +1,20 @@
-import React from "react";
 
+import React, {useState, useEffect} from 'react'
+import SwiperCore, { Navigation, Pagination, A11y, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper.min.css'
 export default function Footer() {
+
+  const [info, setInfo] = useState({
+    ikm: "...",
+    ipp: "...",
+    irb: "...",
+    kod: "...",
+    sakip: "..."
+})
+
+const [swiperContent, setSwiperContent] = useState([]);
   return (
     <>
       <footer className="relative bg-blueGray-200 pt-8 pb-6">
@@ -30,33 +44,69 @@ export default function Footer() {
               <h5 className="text-lg mt-0 mb-2 text-blueGray-600">
               KOTA BANJAR
               </h5>
-             {/*  <div className="mt-6 lg:mb-0 mb-6">
-                <button
-                  className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
+
+
+        
+              <div className="w-full flex items-center justify-center" style={{height: '55%'}}>
+                <Swiper
+                    spaceBetween={0}
+                    slidesPerView={3}
+                    autoplay={{ 
+                        delay: 2500,
+                        disableOnInteraction: false
+                    }}
+                    loop
+                    className="mb-10 h-full w-11/12 lg:w-8/12 mx-auto"
                 >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </button>
-                <button
-                  className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-dribbble"></i>
-                </button>
-                <button
-                  className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-github"></i>
-                </button>
-              </div> */}
+                    <SwiperSlide className="w-4/12 p-2">
+                    <a href="https://web.kpk.go.id/id" target="_blank">
+                    <div className="bg-white rounded-lg">
+                            <p className="text-sm font-light text-center">BPK</p>
+                            <div>
+                            <img
+                        alt="..."
+                        src={require("assets/img/bpk.jpg").default}
+                        className="w-full bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-1"
+                      />
+                            </div>
+                        </div>
+                        </a>
+                    </SwiperSlide>
+                    <SwiperSlide className="w-4/12 p-2">
+                      <a href="https://web.kpk.go.id/id" target="_blank">
+                    <div className="bg-white rounded-lg">
+                            <p className="text-sm font-light text-center">KPK</p>
+                            <div>
+                            <img
+                        alt="..."
+                        src={require("assets/img/KPK.png").default}
+                        className="w-full bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-1"
+                      />
+                            </div>
+                        </div>
+                        </a>
+                    </SwiperSlide>
+                    <SwiperSlide className="w-4/12 p-2">
+                    <a href="https://jabar.bpk.go.id/" target="_blank">
+                    <div className="bg-white rounded-lg">
+                            <p className="text-sm font-light text-center">BPKP</p>
+                            <div>
+                            <img
+                        alt="..."
+                        src={require("assets/img/Kota Banjar.png").default}
+                        className="w-full bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-0"
+                      />
+                            </div>
+                        </div>
+                        </a>
+                    </SwiperSlide>
+                </Swiper>
             </div>
+
+              
+              
+            </div>
+            
             
             <div className="w-full lg:w-6/12 px-4">
               <div className="flex flex-row items-top mb-6">
@@ -71,48 +121,36 @@ export default function Footer() {
                     Telp. (0265) 2730126 <br></br>
                     
                   </h6>
-                </div>
-                {/* <div className="w-full lg:w-4/12 px-4 ml-auto">
+
+                  <a href=" https://www.google.co.id/maps/place/INSPEKTORAT+DAERAH+KOTA+BANJAR/@-7.3598206,108.538212,18z/data=!4m5!3m4!1s0x2e6f623bf630a935:0x4498e4d9e23c79a1!8m2!3d-7.3597689!4d108.5392668" target="blank">
+                    <br></br>
                   <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                    SOSIAL MEDIA
+                    Map
                   </span>
-                  <ul className="list-unstyled">
+                  <ul className="">
                     <li className="flex items-center">
                       
-                      <a
-                      className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm ml-1"
-                      href="https://www.instagram.com/kabupatenbanjarnegara/"
-                      target="blank"
-                      >
-                      <i className="lg:text-blueGray-600 fab fa-instagram text-lg leading-lg mr-1" />
-                      Instagram
-                      </a>
+                    <img
+                        alt="..."
+                        src={require("assets/img/map.png").default}
+                        className="w-full align-middle rounded-t-lg"
+                      />
                     </li>
                     <li className="flex items-center">
                       
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm ml-1"
-                        href="https://twitter.com/bna_dinkominfo"
-                        target="blank"
-                        >
-                        <i className="lg:text-blueGray-600 fab fa-twitter text-lg leading-lg mr-1" />
-                        Twitter
-                      </a>
-                    </li>
-                    <li className="flex items-center">
                       
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm ml-1"
-                        href="https://www.youtube.com/channel/UCTbbEF2tvniXW06O-uzTDyQ"
-                        target="blank"
-                      >
-                      <i className="lg:text-blueGray-600 fab fa-youtube text-lg leading-lg mr-1" />
-                      Youtube
-                      </a>
+                        <i className="lg:text-blueGray-600 fab fa-chrome text-lg leading-lg mr-1" />
+                        Menuju Map
                       
                     </li>
+                   
                   </ul>
-                </div> */}
+                  </a>
+                </div>
+
+                <div className="w-full lg:w-4/12 px-4 ml-auto">
+                  
+                </div>
                 
               </div>
             </div>
@@ -122,13 +160,6 @@ export default function Footer() {
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-blueGray-500 font-semibold py-1">
                 Copyright © {new Date().getFullYear()} INSPEKTORAT DAERAH KOTA BANJAR{" "}
-            {/*     <a
-                  href="https://www.creative-tim.com?ref=nr-footer"
-                  className="text-blueGray-500 hover:text-blueGray-800"
-                >
-             
-                </a> */}
-                
               </div>
             </div>
           </div>

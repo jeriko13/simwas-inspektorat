@@ -3,8 +3,8 @@ import React, {useState, useEffect} from "react";
 import Axios from 'axios';
 import {API_URL} from '../config/config';
 // components
-
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/Nav.js";
+// import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
@@ -15,9 +15,11 @@ export default function Index() {
   
     return (
       <>
+      <br></br>
+      <br></br>
         <Navbar transparent />
         <main>
-          <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+          <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
             <div
               className="absolute top-0 w-full h-full bg-center bg-cover"
               style={{

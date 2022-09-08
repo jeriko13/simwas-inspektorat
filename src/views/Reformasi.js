@@ -3,8 +3,8 @@ import React, {useState, useEffect} from "react";
 import Axios from 'axios';
 import {API_URL} from '../config/config';
 // components
-
-import Navbar from "components/Navbars/AuthNavbar.js";
+import Navbar from "components/Navbars/Nav.js";
+//import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { data } from "autoprefixer";
 
@@ -15,9 +15,11 @@ export default function Reformasi() {
   
     return (
       <>
+      <br></br>
+      <br></br>
         <Navbar transparent />
         <main>
-          <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+          <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-30">
             <div
               className="absolute top-0 w-full h-full bg-center bg-cover"
               style={{
@@ -44,7 +46,7 @@ export default function Reformasi() {
                     </h1>
                     <h2 className="mt-4 text-white font-semibold text-4xl">
                   
-                    Reformasi Birokrasi & Pencegahan Tipikor
+                    Reformasi Birokrasi
 
                     </h2>
                     <p className="mt-4 text-lg text-blueGray-200">
@@ -88,44 +90,9 @@ export default function Reformasi() {
 
             
 
-                  <a href="berita/2" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
-                  >    
             
-                  <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
-                
-                  <img
-                        alt="..."
-                        src={'https://img.freepik.com/free-vector/programmer-with-jigsaw-shield-system-monitoring-network-traffic-firewall-network-security-system-network-firewall-concept_335657-1830.jpg?size=626&ext=jpg'}
-                    
-                        
-                        className="w-full align-middle rounded-t-lg"
-                      />
-                    <blockquote className="relative p-8 mb-4">
-                      <svg
-                        preserveAspectRatio="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 583 95"
-                        className="absolute left-0 w-full block h-95-px -top-94-px"
-                      >
-                        <polygon
-                          points="-30,95 583,95 583,65"
-                          className="text-lightBlue-500 fill-current"
-                        ></polygon>
-                      </svg>
 
-                      <center><h4 className="text-xl font-bold text-white">
-                      Monitoring Center for Prevention
-
-                     </h4> </center> 
-                      {/* <p className="text-md font-light mt-2 text-white">
-                       isi
-                      </p> */}
-                  
-                    </blockquote>
-                  </div>
-                  </a>
-
-                  <a href="berita/3" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+                  <a href="/informasidetail/13" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -157,7 +124,7 @@ export default function Reformasi() {
                   </div>
                   </a>
 
-                  <a href="berita/3" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
+                  <a href="/informasidetail/14" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -190,7 +157,7 @@ export default function Reformasi() {
                   </div>
                   </a>
 
-                  <a href="berita/2" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+                  <a href="/informasidetail/15" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -214,7 +181,7 @@ export default function Reformasi() {
                       </svg>
 
                       <center><h4 className="text-xl font-bold text-white">
-                      Peningkatan Kapabilitas APIP
+                      PK APIP
 
                      </h4>  </center>
                   
@@ -222,7 +189,44 @@ export default function Reformasi() {
                   </div>
                   </a>
 
-                  <a href="berita/1" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
+                  <a href="/informasidetail/16" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
+                  >    
+            
+                  <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
+                
+                  <img
+                        alt="..."
+                        src={'https://img.freepik.com/free-vector/programmer-with-jigsaw-shield-system-monitoring-network-traffic-firewall-network-security-system-network-firewall-concept_335657-1830.jpg?size=626&ext=jpg'}
+                    
+                        
+                        className="w-full align-middle rounded-t-lg"
+                      />
+                    <blockquote className="relative p-8 mb-4">
+                      <svg
+                        preserveAspectRatio="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 583 95"
+                        className="absolute left-0 w-full block h-95-px -top-94-px"
+                      >
+                        <polygon
+                          points="-30,95 583,95 583,65"
+                          className="text-lightBlue-500 fill-current"
+                        ></polygon>
+                      </svg>
+
+                      <center><h4 className="text-xl font-bold text-white">
+                     Whistle Blowing System
+
+                     </h4> </center> 
+                      {/* <p className="text-md font-light mt-2 text-white">
+                       isi
+                      </p> */}
+                  
+                    </blockquote>
+                  </div>
+                  </a>
+
+                  <a href="/informasidetail/17" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button"
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -246,7 +250,7 @@ export default function Reformasi() {
                       </svg>
 
                       <center><h4 className="text-xl font-bold text-white">
-                      Evaluasi SAKIP
+                     Pengendalian Gratifikasi
 
                      </h4>  </center>
                   
@@ -254,7 +258,7 @@ export default function Reformasi() {
                   </div>
                   </a>
 
-                  <a href="berita/3" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+                  <a href="/informasidetail/18" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -278,7 +282,7 @@ export default function Reformasi() {
                       </svg>
 
                       <center><h4 className="text-xl font-bold text-white">
-                      ZI WBK/WBBM
+                     Kapabilitas APIP
 
                      </h4>  </center>
                   
@@ -288,7 +292,7 @@ export default function Reformasi() {
 
          
 
-                  <a href="berita/2" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
+                  {/* <a href="berita/14" className="w-full md:w-4/12 px-2 mr-auto ml-auto" type="button" 
                   >    
             
                   <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
@@ -317,7 +321,7 @@ export default function Reformasi() {
                   
                     </blockquote>
                   </div>
-                  </a>
+                  </a> */}
    
                 
                
