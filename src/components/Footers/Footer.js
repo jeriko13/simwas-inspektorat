@@ -59,13 +59,13 @@ const [swiperContent, setSwiperContent] = useState([]);
                     className="mb-10 h-full w-11/12 lg:w-8/12 mx-auto"
                 >
                     <SwiperSlide className="w-4/12 p-2">
-                    <a href="https://web.kpk.go.id/id" target="_blank">
+                    <a href="https://www.bpk.go.id" target="_blank">
                     <div className="bg-white rounded-lg">
                             <p className="text-sm font-light text-center">BPK</p>
                             <div>
                             <img
                         alt="..."
-                        src={require("assets/img/bpk.jpg").default}
+                        src={require("assets/img/bpk.png").default}
                         className="w-full bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-1"
                       />
                             </div>
@@ -87,13 +87,13 @@ const [swiperContent, setSwiperContent] = useState([]);
                         </a>
                     </SwiperSlide>
                     <SwiperSlide className="w-4/12 p-2">
-                    <a href="https://jabar.bpk.go.id/" target="_blank">
+                    <a href="https://www.bpkp.go.id/" target="_blank">
                     <div className="bg-white rounded-lg">
                             <p className="text-sm font-light text-center">BPKP</p>
                             <div>
                             <img
                         alt="..."
-                        src={require("assets/img/Kota Banjar.png").default}
+                        src={require("assets/img/bpkp.png").default}
                         className="w-full bg-white rounded-lg shadow-lg h-full flex flex-col items-center justify-center p-0"
                       />
                             </div>

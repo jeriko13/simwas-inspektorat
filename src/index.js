@@ -44,6 +44,10 @@ import ProdukHukum from "views/ProdukHukum";
 import Program from "views/Program";
 import Tipikor from "views/Tipikor";
 import Email from "views/Email";
+import KirimEmail from "views/KirimEmail";
+import Tiket from "views/Tiket";
+import TiketList from "views/TiketList";
+import Pencarian from "views/Pencarian";
 // import Informasi from "views/Informasi";
 
 // import Pb from "views/Pb";
@@ -109,13 +113,17 @@ ReactDOM.render(
       <Route path="/Program" exact component={Program} />
       <Route path="/Tipikor" exact component={Tipikor} />
       <Route path="/Email" exact component={Email} />
+      <Route path="/KirimEmail" exact component={KirimEmail} />
+      <Route path="/Tiket/:tiket" exact component={Tiket} />
+      <Route path="/TiketList" exact component={TiketList} />
+      <Route path="/pencarian/:keys" component={Pencarian} />
 
       {/* <Route path="/Pb" exact component={Pb} /> */}
 
       {/* <Route path="/Berita" exact component={BEr} /> */}
       <Route path="/grafik/kinerja-opd" component={KinerjaOpd} />
       <Route path="/Simwas" exact component={Simwas} />
-      <Route path="/" exact component={Simwas} />
+      <Route path="/" exact component={Beranda} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
     </Switch>

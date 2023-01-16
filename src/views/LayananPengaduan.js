@@ -1,5 +1,6 @@
 import React, { useEffect, useState,useRef } from "react";
 import { Form, Button } from "semantic-ui-react";
+import Axios from "axios";
 import axios from "axios";
 import "../App.css";
 import Navbar from "components/Navbars/Nav.js";
@@ -19,6 +20,7 @@ export default function PelayananPublic() {
   const [umur, setUmur] = useState("");
   const [ttl, setTtl] = useState("");
   const [lahir, ] = useState("");
+  const [email, setEmail] = useState('');
   const [kewarganegaraan, setKewarganegaraan] = useState("");
   const [jenis_kelamin, setJk] = useState("");
   const [agama, setAgama] = useState("");
@@ -27,7 +29,7 @@ export default function PelayananPublic() {
   const [nomor_hp, setNohp] = useState("");
   const [waktu_kejadian, setWaktu] = useState("");
   const [tempat_kejadian, setTempat] = useState("");
-  const [apa_yang_terjadi, setTerjadi] = useState("");
+  
   const [siapa_yang_menjadi_korban, setKorban] = useState("");
   const [siapa_yang_terlapor, setTerlapor] = useState("");
   const [kronologis_kejadian, setKronologi] = useState("");
@@ -37,7 +39,14 @@ export default function PelayananPublic() {
   const [nomor_lhp, ] = useState("");
   const [jenis_rekomendasi, ] = useState("");
   const [keterangan, ] = useState("");
+  const [dataInformasi, setDataInformasi] = useState([]);
+  const [materi, setMateri]= useState('');
+  const [tiket, setTiket] = useState("");
+  const [uraian_masalah, setUraian] = useState('');
+  const [file_uraian_masalah, setFile] = useState('');
+  let ms = Date.now();
   const form = useRef();
+
 
   const [showAlert, setShowAlert] = React.useState(true);
 
@@ -63,16 +72,21 @@ export default function PelayananPublic() {
           nomor_hp,
           waktu_kejadian,
           tempat_kejadian,
-          apa_yang_terjadi,
+         
           siapa_yang_menjadi_korban,
           siapa_yang_terlapor,
           kronologis_kejadian,
           bukti_yang_diserahkan,
           upload_bukti,
           penerima_laporan,
+          materi,
           nomor_lhp,
           jenis_rekomendasi,
           keterangan,
+          tiket,
+          uraian_masalah,
+          file_uraian_masalah,
+
         }
       )
       .then(() => {
@@ -84,14 +98,43 @@ export default function PelayananPublic() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('gmail', 'template_dxsi54e', e.target, 'AzSRlohQYP291ZugP')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
+  
+
+    emailjs.sendForm('gmail', 'template_r6937se', e.target, 'AzSRlohQYP291ZugP')
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
+     
+    
      
   };
+
+  useEffect(() => {
+    checkInfo();
+  }, []);
+  
+  const checkInfo = () => {
+  
+    setTiket( Date.now());
+  
+    try {
+      Axios.get(`${API_URL}/list/cv_m_objek`)
+        .then((res) => {
+          const data = res.data;
+          setDataInformasi(data.cv_m_objek);
+          console.log(data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return (
     <>
@@ -175,6 +218,24 @@ export default function PelayananPublic() {
                       <div>
                     
                     <form ref={form} onSubmit={sendEmail}>
+
+                
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        Email 
+                      </label>
+                      <input
+                        type="email"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Email "
+                        name="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
                     <div className="relative w-full mb-3 mt-8">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -248,7 +309,7 @@ export default function PelayananPublic() {
                       </label>
                       <select
                         id="jenis_kelamin"
-                        name="jenis_kelamin"
+                        name="kelamin"
                         onChange={(e) => setJk(e.target.value)}
                         className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       >
@@ -367,24 +428,9 @@ export default function PelayananPublic() {
                       />
                     </div>
 
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="message"
-                      >
-                        Apa yang terjadi
-                      </label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Ketikan kronologi kejadian ..."
-                        name="kejadian"
-                        onChange={(e) => setTerjadi(e.target.value)}
-                      />
-                    </div>
+              
 
-                    <div className="relative w-full mb-3">
+                    {/* <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
@@ -398,7 +444,7 @@ export default function PelayananPublic() {
                         name="korban"
                         onChange={(e) => setKorban(e.target.value)}
                       />
-                    </div>
+                    </div> */}
 
                     <div className="relative w-full mb-3">
                       <label
@@ -416,22 +462,35 @@ export default function PelayananPublic() {
                       />
                     </div>
 
-                    <div className="relative w-full mb-3">
+                    <div className="relative w-full mb-3 mt-8">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="message"
+                        htmlFor="full-name"
                       >
-                        Bagaimana Kejadiannya
+                        Materi Pengaduan
                       </label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder="Bagaimana Kejadiannya ..."
-                        name="kronologi"
-                        onChange={(e) => setKronologi(e.target.value)}
-                      />
+                      <select
+                        id="golongan"
+                        name="kategori"
+                        onChange={(e) => setMateri(e.target.value)}
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      >
+                        <option disabled selected hidden>
+                        Materi Pengaduan
+                        </option>
+                       
+                        <option value="Penyalahgunaan Wewenang">Penyalahgunaan Wewenang</option>
+                        <option value="Hambatan dalam Pelayanan Masyarakat">Hambatan dalam Pelayanan Masyarakat</option>
+                        <option value="Korupsi, Kolusi, dan Nepotisme">
+                        Korupsi, Kolusi, dan Nepotisme
+                        </option>
+                        <option value="Pelanggaran Disiplin Pegawai">Pelanggaran disiplin pegawai</option>
+                        <option value="Lainnya">Lainnya</option>
+                      </select>
+                   
                     </div>
+
+
 
                     <div className="relative w-full mb-3">
                       <label
@@ -455,7 +514,7 @@ export default function PelayananPublic() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
                       >
-                        Bukti yang diserahkan (Link Google Drive Anyone with the link)
+                        Bukti yang diserahkan 
                       </label>
                       <textarea
                         rows="4"
@@ -464,6 +523,61 @@ export default function PelayananPublic() {
                         placeholder="Bukti yang diserahkan"
                         name="bukti"
                         onChange={(e) => setBukti(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="message"
+                          >
+                            Uraian Masalah
+                          </label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="Uraian masalah..."
+                            name="uraian"
+                            onChange={(e) => setUraian(e.target.value)}
+                          />
+                        </div>
+
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block  text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="message"
+                          >
+                            <label className="block uppercase">File Uraian Masalah</label> 
+                            <label>(Google Drive, Anyone with the link)</label> 
+                            <a href="https://www.youtube.com/watch?v=uZjLDBEIAOg"  target="blank" className="bg-orange-500 text-white active:bg-blueGray-100 text-1xl  uppercase px-3 py-2 rounded-full">
+                           link tutorial</a>
+                          </label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="File uraian masalah.."
+                            name="file_uraian_masalah"
+                            onChange={(e) => setFile(e.target.value)}
+                          />
+                        </div>
+
+                        <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="tiket"
+                        
+                      >
+                        Tiket
+                      </label> 
+                      <input
+                        type="tiket"
+                        className="border-0 px-3 py-3 placeholder-black text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder={tiket}
+                        name="tiket" 
+                        readOnly={true}
+                        value={tiket}
                       />
                     </div>
                     <input className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"

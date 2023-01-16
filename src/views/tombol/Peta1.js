@@ -7,18 +7,18 @@ import Axios from 'axios';
 import './App.css';
 
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationIcon } from '@heroicons/react/outline'
+// import { ExclamationIcon } from '@heroicons/react/outline'
 
 
-import { data } from "autoprefixer";
+// import { data } from "autoprefixer";
 
 
-import {API_URL} from '../../config/config';
+// import {API_URL} from '../../config/config';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
+  BrowserRouter as //Router,
+  //Switch,
+  //Route,
+  //Link,
   useParams
 } from "react-router-dom";
 
@@ -225,8 +225,6 @@ export default function Peta1() {
                   <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                    
-
-
                   </h3>
                   <br></br>
                 </div>
@@ -240,8 +238,6 @@ export default function Peta1() {
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
                     
 
-
-                    
                       </p>
                       
                     </div>

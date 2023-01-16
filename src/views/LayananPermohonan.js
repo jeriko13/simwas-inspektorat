@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef } from "react";
 import { Form, Button } from "semantic-ui-react";
+import Axios from "axios";
 import axios from "axios";
 import "../App.css";
 import Navbar from "components/Navbars/Nav.js";
@@ -7,17 +8,35 @@ import Navbar from "components/Navbars/Nav.js";
 import Footer from "components/Footers/Footer.js";
 import "semantic-ui-css/semantic.min.css";
 import { API_URL } from "../config/config";
+import emailjs from "emailjs-com";
 
 import { useHistory } from "react-router";
+
+ 
 // import { data } from "autoprefixer";
 export default function PelayananPublic() {
 
   let history = useHistory();
-  const [nip, setNip] = useState("");
+  const inputRef = useRef(null);
   const [nama, setNama] = useState("");
-  const [email, setEmail] = useState("");
-  const [notlp, setnoTlp] = useState("");
+  const [nip, setNip] = useState("");
+  const [alamat, setAlamat] = useState("");
   const [pangkat, setPangkat] = useState("");
+  const [email, setEmail] = useState("");
+  const [jabatan, setJabatan] = useState("");
+  const [notlp, setnoTlp] = useState("");
+  const [perangkat, setPerangkat] = useState("");
+  const [tujuan, setTujuan] = useState("");
+  const [alasan, setAlasan] = useState("");
+  const [tiket, setTiket] = useState("");
+  const [dataInformasi, setDataInformasi] = useState([]);
+  const [uraian_masalah, setUraian] = useState('');
+  const [file_uraian_masalah, setFile] = useState('');
+
+  let ms = Date.now();
+  const form = useRef();
+// Cek apakah data sudah ada di dalam database
+  // Simpan data ke dalam database
   
 
   const [showAlert, setShowAlert] = React.useState(true);
@@ -25,28 +44,90 @@ export default function PelayananPublic() {
   useEffect(() => {
     setShowAlert(false);
   }, [0]);
-
-  const sendDataToAPI = () => {
-    axios
-      .post(
-        `${API_URL}/add/cv_layanan_permohonan`,
-        {
-          nip,
-          nama,
+ 
+  const checkDuplicateData = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/cv_layanan_permohonan`, {
+        params: {
           email,
-          notlp,
-          pangkat,
-          
-        }
-      )
-      .then(() => {
-        history.push("/LayananPermohonan");
-        setShowAlert(true);
+        },
       });
+      return res.data.duplicate;
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
+  const sendDataToAPI = async () => {
+    const isDuplicate = await checkDuplicateData();
+    if (!isDuplicate) {
+      axios
+        .post(
+          `${API_URL}/add/cv_layanan_permohonan`,
+          {
+            nama,
+            nip,
+            alamat,
+            pangkat,
+            email,
+            jabatan,
+            notlp,
+            perangkat,
+            tujuan,
+            alasan,
+            tiket,
+            uraian_masalah,
+            file_uraian_masalah,
+          }
+        )
+        .then(() => {
+          history.push("/LayananPermohonan");
+          setShowAlert(true);
+        });
+    } else {
+      // Display an error message or a confirmation prompt
+    }
+  };
+  
 
+  const sendEmail = (e) => {
+    e.preventDefault();
 
+    emailjs.sendForm('gmail', 'template_r6937se', e.target, 'AzSRlohQYP291ZugP')
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
+     
+  };
+  
+ useEffect(() => {
+  if (inputRef.current) {
+    inputRef.current.focus();
+  }
+}, []);
 
+  
+  const checkInfo = () => {
+  
+    setTiket( Date.now());
+  
+    try {
+      Axios.get(`${API_URL}/list/cv_m_objek`)
+        .then((res) => {
+          const data = res.data;
+          setDataInformasi(data.cv_m_objek);
+          console.log(data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -132,13 +213,40 @@ export default function PelayananPublic() {
                     ) : (
                       <div>
                     
-                    
+                    <form ref={form} onSubmit={sendEmail}>
+               
+                
+                     <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        NAMA PEMOHON :
+                      </label>
+                      {/* <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Nama Dengan Gelar"
+                        name="nama"
+                        onChange={(e) => setNama(e.target.value)}
+                      /> */}
+                    </div>
+                  
+                  <input
+                ref={inputRef}
+                type="text"
+                className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                placeholder="Nama Dengan Gelar"
+                name="nama"
+                onChange={(e) => setNama(e.target.value)}
+                />
+
                     <div className="relative w-full mb-3 mt-8">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="full-name"
                       >
-                        NIP
+                        NIP :
                       </label>
                       <input
                         type="number"
@@ -148,22 +256,6 @@ export default function PelayananPublic() {
                         onChange={(e) => setNip(e.target.value)}
                       />
                     </div>
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="email"
-                      >
-                        Nama
-                      </label>
-                      <input
-                        type="nama"
-                        className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Nama Dengan Gelar"
-                        name="nama"
-                        onChange={(e) => setNama(e.target.value)}
-                      />
-                    </div>
-
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -184,14 +276,14 @@ export default function PelayananPublic() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="email"
                       >
-                        No Telp.
+                        ALAMAT :
                       </label>
                       <input
-                        type="number"
+                        type="text"
                         className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="No Telp / No Whatsapp"
-                        name="notlp"
-                        onChange={(e) => setnoTlp(e.target.value)}
+                        placeholder="Alamat"
+                        name="alamat"
+                        onChange={(e) => setAlamat(e.target.value)}
                       />
                     </div>
 
@@ -200,7 +292,7 @@ export default function PelayananPublic() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="golongan"
                       >
-                        Pangkat Golongan
+                        PANGKAT/GOLONGAN :
                       </label>
                       <select
                         id="golongan"
@@ -236,10 +328,146 @@ export default function PelayananPublic() {
                         <option value="Pembina Utama / IV E">Pembina Utama / IV E</option>
                       </select>
                     </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        JABATAN :
+                      </label>
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Jabatan"
+                        name="jabatan"
+                        onChange={(e) => setJabatan(e.target.value)}
+                      />
+                    </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        NO HP/WA :
+                      </label>
+                      <input
+                        type="number"
+                        className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="No Telp / No Whatsapp"
+                        name="no"
+                        onChange={(e) => setnoTlp(e.target.value)}
+                      />
+                    </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        PERANGKAT DAERAH/UNIT KERJA PEMOHON :
+                      </label>
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="PERANGKAT DAERAH/UNIT KERJA PEMOHON"
+                        name="perangkat"
+                        onChange={(e) => setPerangkat(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        TUJUAN PINDAH (Kementrian/Lembaga/Provinsi/Kabupaten/Kota) :
+                      </label>
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="TUJUAN PINDAH.."
+                        name="perangkat"
+                        onChange={(e) => setTujuan(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        ALASAN PINDAH :
+                      </label>
+                      <input
+                        type="text"
+                        className="border-0 px-3 py-3 placeholder text-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="ALASAN PINDAH.."
+                        name="perangkat"
+                        onChange={(e) => setAlasan(e.target.value)}
+                      />
+                    </div>
+
+                    {/* <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="message"
+                          >
+                            Uraian Masalah
+                          </label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="Uraian masalah..."
+                            name="uraian"
+                            onChange={(e) => setUraian(e.target.value)}
+                          />
+                        </div> */}
+
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block  text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="message"
+                          >
+                            <label className="block uppercase">FILE BERKAS PERMOHONAN (Surat Pengantar, Surat Permohonan Keterangan Bebas Temuan, Berkas Pendukung lain misalnya : KTP, SK, Lolos Butuh, Surat Pemberitahuan, Testing, dll. Dalam bentuk pdf.)</label> 
+                            <br></br>
+                            <label>(Google Drive, Anyone with the link) </label> 
+                            <a href="https://www.youtube.com/watch?v=uZjLDBEIAOg"  target="blank" className="bg-orange-500 text-white active:bg-blueGray-100 text-1xl  uppercase px-3 py-2 rounded-full">
+                            FILE BERKAS PERMOHONAN</a>
+                          </label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="FILE BERKAS PERMOHONAN.."
+                            name="file_uraian_masalah"
+                            onChange={(e) => setFile(e.target.value)}
+                          />
+                        </div>
+                        <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="tiket"
+                        
+                      >
+                        Tiket
+                      </label> 
+                      <input
+                        type="tiket"
+                        className="border-0 px-3 py-3 placeholder-black text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder={tiket}
+                        name="tiket" 
+                        readOnly={true}
+                        value={tiket}
+                      />
+                    </div>
+
+                    <input className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="submit" value="Kirim Pesan" onClick={sendDataToAPI}/>
+                    </form>
 
                     
 
-                    <div className="text-center mt-6">
+                  {/*   <div className="text-center mt-6">
                       <button
                         className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         
@@ -247,7 +475,7 @@ export default function PelayananPublic() {
                       >
                         Kirim
                       </button>
-                    </div>
+                    </div> */}
                     </div>
                     )}
                   </div>

@@ -4,10 +4,10 @@ import Footer from "components/Footers/Footer.js";
 import Axios from 'axios';
 import {API_URL} from '../../config/config';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
+  BrowserRouter as //Router,
+  //Switch,
+  //Route,
+  //Link,
   useParams
 } from "react-router-dom";
 

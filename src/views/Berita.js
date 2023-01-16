@@ -167,7 +167,7 @@ export default function Berita() {
                     className="w-full md:w-4/12 px-2 mr-auto ml-auto"
                     type="button"
                   >
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500">
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-white-500">
                       <img
                         alt="..."
                         src={`https://simwas.inspektorat.banjarkota.go.id/web_upload/files/${hasil.gambar}`}
@@ -188,7 +188,7 @@ export default function Berita() {
                         </svg>
 
                         <center>
-                          <h4 className="text-xl font-bold text-white">
+                          <h4 className="text-xl font-bold text-black">
                             <p> {hasil.judul} </p>
                             <p> {hasil.tanggal} </p>
                           </h4>{" "}

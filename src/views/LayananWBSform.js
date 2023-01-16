@@ -1,16 +1,17 @@
-import React, { useEffect, useState ,useRef} from "react";
-import { Form, Button } from "semantic-ui-react";
+import React, { useEffect, useState ,useRef ,useParams} from "react";
+//import { Form, Button } from "semantic-ui-react";
+import Axios from "axios";
 import axios from "axios";
 import "../App.css";
 import emailjs from "emailjs-com";
 
-import apiKeys from "../config/apikeys";
+//import apiKeys from "../config/apikeys";
 import Navbar from "components/Navbars/Nav.js";
 // import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import "semantic-ui-css/semantic.min.css";
 import { API_URL } from "../config/config";
-
+//import moment from 'moment'
 import { useHistory } from "react-router";
 
 
@@ -20,6 +21,7 @@ import { useHistory } from "react-router";
 
 
 export default function LayananWBSform() {
+
   let history = useHistory();
   const [nip_pelapor, setNip_pelapor] = useState("");
   const [nama, setNama] = useState("");
@@ -31,6 +33,29 @@ export default function LayananWBSform() {
   const [rincian, setRincian] = useState("");
   const [file_pendukung, setFile_pendukung] = useState("");
   const form = useRef();
+  const [lookupLokasiKerja, setLookupLokasiKerja] = useState([]);
+  const [dataInformasi, setDataInformasi] = useState([]);
+  const [uraian_masalah, setUraian] = useState('');
+  const [file_uraian_masalah, setFile] = useState('');
+  
+  // const timestamp = Date.now();
+  const [tiket, setTiket] = useState("");
+  const dateTime = new Date()
+ 
+    
+  const checkDuplicateData = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/cv_wbs`, {
+        params: {
+          email,
+        },
+      });
+      return res.data.duplicate;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+    
 
   const [showAlert, setShowAlert] = React.useState(true);
 
@@ -38,7 +63,16 @@ export default function LayananWBSform() {
     setShowAlert(false);
   }, [0]);
 
-  const sendDataToAPI = () => {
+  useEffect(() => {
+    getLookup()
+
+},[])
+
+let functionCalled = false;
+
+const sendDataToAPI = async () => {
+  const isDuplicate = await checkDuplicateData();
+  if (!isDuplicate) {
     axios
       .post(
         `${API_URL}/add/cv_wbs`,
@@ -52,15 +86,19 @@ export default function LayananWBSform() {
           kategori,
           rincian,
           file_pendukung,
-         
+          tiket,
+          uraian_masalah,
+          file_uraian_masalah,
         }
       )
       .then(() => {
         history.push("/LayananWbsform");
         setShowAlert(true);
-      });
+        });
+    } else {
+      // Display an error message or a confirmation prompt
+    }
   };
-
 
   
   const sendEmail = (e) => {
@@ -73,8 +111,45 @@ export default function LayananWBSform() {
           console.log(error.text);
       });
      
+   
   };
+
+  const getLookup = async () => {
+    const lk = await axios.get(`${API_URL}/list/m_objek`).then((res) => {
+      setLookupLokasiKerja(res.m_objek);
+    })
+    setLookupLokasiKerja(lk);
   
+}
+
+
+
+
+
+
+useEffect(() => {
+  checkInfo();
+}, []);
+
+const checkInfo = () => {
+
+  setTiket( Date.now());
+  setWaktu( new Date()) ;
+  try {
+    Axios.get(`${API_URL}/list/cv_m_objek`)
+      .then((res) => {
+        const data = res.data;
+        setDataInformasi(data.cv_m_objek);
+        console.log(data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   return (
     <>
@@ -191,6 +266,7 @@ export default function LayananWBSform() {
                       />
                     </div> */}
 <form ref={form} onSubmit={sendEmail}>
+                   
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -202,7 +278,7 @@ export default function LayananWBSform() {
                         type="email"
                         className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Email Pelapor"
-                        name="email"
+                        name="email" 
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
@@ -232,33 +308,43 @@ export default function LayananWBSform() {
                       </label>
 
                       <select
-                        id="golongan"
+                        id="unit"
                         name="unit"
                         onChange={(e) => setUnit_kerja_terlapor(e.target.value)}
                         className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       >
-                        <option disabled selected hidden>
+                        {/* <option disabled selected hidden>
                           Unit Kerja
-                        </option>
-                      
+                        </option> */}
+                        <option value="" disabled selected>Unit Kerja Lokasi Terlapor</option>
+                               
+                                {
+                                    dataInformasi.map((value, index) => (
+                                        <option value={value.objek}>{value.objek}</option>
+                                        
+                                    ))
+                                }
                       </select>
                     </div>
 
-                    <div className="relative w-full mb-3 mt-8">
+           
+
+                    {/* <div className="relative w-full mb-3 mt-8">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="full-name"
                       >
-                        Waktu Kejadian
+                        <p>{moment(dateTime).format('YYYY-MM-D')}</p>
                       </label>
                       <input
                         type="date"
                         className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Waktu Kejadian"
+                        placeholder={moment(dateTime).format('DD:MM:YY')}
                         name="waktu"
+                        value={moment(dateTime).format('DD:MM:YY')}
                         onChange={(e) => setWaktu(e.target.value)}
                       />
-                    </div>
+                    </div> */}
 
                     <div className="relative w-full mb-3 mt-8">
                       <label
@@ -277,22 +363,25 @@ export default function LayananWBSform() {
                           Kategori
                         </option>
                         <option value="Korupsi, kolusi, dan nepotisme">
-                          Korupsi, kolusi, dan nepotisme
+                          Korupsi, kolusi dan nepotisme (KKN)
                         </option>
                         <option value="Penyalahgunaan Wewenang">Penyalahgunaan Wewenang</option>
-                        <option value="Kecurangan (Fraud)">Kecurangan (Fraud)</option>
-                        <option value="Perbuatan melanggar hukum dan peraturan internal">
-                          Perbuatan melanggar hukum dan peraturan internal
-                        </option>
-                        <option value="Penggelapan aset">Penggelapan aset</option>
-                        <option value="Kepegawaian">Kepegawaian</option>
-                        <option value="Benturan Kepentingan">Benturan Kepentingan</option>
+                        <option value="Kecurangan" style={{color: 'blueGray', fontStyle: 'italic'}}>Kecurangan (Fraud)</option>
+                        <option value="Gratifikasi">Gratifikasi</option>
+                        <option value="Pelanggaran disiplin">Pelanggaran disiplin</option>
+                        <option value="Pelanggaran terhadap peraturan perundang-undangan yang berlaku">
+                        Pelanggaran terhadap peraturan perundang-undangan yang berlaku</option>
+                        <option value="Pelanggaran terhadap prosedur di bidang tugas dan fungsi">
+                        Pelanggaran terhadap prosedur di bidang tugas dan fungsi</option>
+                        <option value="Penggelapan asset">Penggelapan asset</option>
+                        <option value="Tindak Pidana">Tindak pidana</option>
+                        <option value="Pelanggaran terhadap kode etik dan aturan perilaku">Pelanggaran terhadap kode etik dan aturan perilaku</option>
                         <option value="Lainnya">Lainnya</option>
                       </select>
                    
                     </div>
 
-                    <div className="relative w-full mb-3">
+                    {/* <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
@@ -307,41 +396,71 @@ export default function LayananWBSform() {
                         name="rincian"
                         onChange={(e) => setRincian(e.target.value)}
                       />
-                    </div>
+                    </div> */}
+
+                
 
                     <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="message"
+                          >
+                            Uraian Masalah
+                          </label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="Uraian masalah..."
+                            name="uraian"
+                            onChange={(e) => setUraian(e.target.value)}
+                          />
+                        </div>
+
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block  text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="message"
+                          >
+                            <label className="block uppercase">File Uraian Masalah</label> 
+                            <label>(Google Drive, Anyone with the link)</label> 
+                            <a href="https://www.youtube.com/watch?v=uZjLDBEIAOg"  target="blank" className="bg-orange-500 text-white active:bg-blueGray-100 text-1xl  uppercase px-3 py-2 rounded-full">
+                           link tutorial</a>
+                          </label>
+                          <textarea
+                            rows="4"
+                            cols="80"
+                            className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                            placeholder="File uraian masalah.."
+                            name="file_uraian_masalah"
+                            onChange={(e) => setFile(e.target.value)}
+                          />
+                        </div>
+                        <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="message"
+                        htmlFor="tiket"
+                        
                       >
-                        File Google Drive
-                      </label>
-                      <textarea
-                        rows="2"
-                        cols="80"
-                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                        placeholder=" File Google Drive link anyone with the link"
-                        name="file"
-                        onChange={(e) => setFile_pendukung(e.target.value)}
+                        Tiket
+                      </label> 
+                      <input
+                        type="tiket"
+                        className="border-0 px-3 py-3 placeholder-black text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder={tiket}
+                        name="tiket" 
+                        readOnly={true}
+                        value={tiket}
                       />
                     </div>
+
                  
 
-                    {/* <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="message"
-                      >
-                        File Pendukung
-                      </label>
-                      <input
-                        type="file"
-                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="File"
-                        name="file_pendukung"
-                        onChange={(e) => setFile(e.target.value)}
-                      />
-                    </div> */}
+                    
+
+
+                     
+
                     <input className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="submit" value="Kirim Pesan" onClick={sendDataToAPI}/>
 </form>

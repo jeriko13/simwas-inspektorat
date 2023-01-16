@@ -93,10 +93,10 @@ export default function PelayananPublic() {
                     <div className="text-left mt-6">
                       <a
                         href="./LayananWBSform"
-                        className="bg-blueGray-800 text-white text-center text-2xl w-full md:w-4/12 px-2 mr-auto ml-auto"
+                        className="bg-orange-500 text-white active:bg-blueGray-100 text-1xl  uppercase px-3 py-2 rounded-full"
                         type="button"
                       >
-                       Format Pengaduannya
+                       Form Pengaduan
                       </a>
                     </div>
                     <div>

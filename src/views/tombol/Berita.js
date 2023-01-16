@@ -5,10 +5,10 @@ import {API_URL} from '../config/config'
 import Navbar from './Navbar';
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
+    BrowserRouter as //Router,
+    //Switch,
+   // Route,
+    //Link,
     useParams
   } from "react-router-dom";
 

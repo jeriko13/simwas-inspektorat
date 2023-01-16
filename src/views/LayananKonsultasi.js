@@ -1,5 +1,6 @@
 import React, { useEffect, useState ,useRef } from "react";
 import { Form, Button } from "semantic-ui-react";
+import Axios from "axios";
 import axios from "axios";
 import "../App.css";
 import Navbar from "components/Navbars/Nav.js";
@@ -17,13 +18,19 @@ export default function LayananKonsultasi() {
   // const [tahun, setTahun] = useState('');
   const [tanggal, setTanggal] = useState('');
   const [nama, setNama] = useState('');
+  const [email, setEmail] = useState('');
   const [alamat, setAlamat] = useState('');
   const [jabatan, setJabatan] = useState('');
   const [konsultasi, setKonsultasi] = useState('');
   const [uraian_masalah, setUraian] = useState('');
-  const [rekomendasi, setRekomendasi] = useState('');
+  const [file_uraian_masalah, setFile] = useState('');
   const [showAlert, setShowAlert] = React.useState(true);
+  const [dataInformasi, setDataInformasi] = useState([]);
+  const [tiket, setTiket] = useState("");
+  let ms = Date.now();
   const form = useRef();
+  
+
 
   useEffect(() => {
     setShowAlert(false);
@@ -41,7 +48,8 @@ export default function LayananKonsultasi() {
           jabatan,
           konsultasi,
           uraian_masalah,
-          rekomendasi,
+          file_uraian_masalah,
+          tiket,
           // penerima_konsultasi,
           // dokumen,
           // wilayah,
@@ -56,13 +64,39 @@ export default function LayananKonsultasi() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('gmail', 'template_dxsi54e', e.target, 'AzSRlohQYP291ZugP')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
+    emailjs.sendForm('gmail', 'template_r6937se', e.target, 'AzSRlohQYP291ZugP')
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
      
+    
+     
+  };
+
+  useEffect(() => {
+    checkInfo();
+  }, []);
+  
+  const checkInfo = () => {
+  
+    setTiket( Date.now());
+  
+    try {
+      Axios.get(`${API_URL}/list/cv_m_objek`)
+        .then((res) => {
+          const data = res.data;
+          setDataInformasi(data.cv_m_objek);
+          console.log(data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -147,6 +181,24 @@ export default function LayananKonsultasi() {
                     ) : (
                       <div>
                         <form ref={form} onSubmit={sendEmail}>
+
+                   
+
+                        <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="email"
+                      >
+                        Email Pemohon
+                      </label>
+                      <input
+                        type="email"
+                        className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Email Pemohon"
+                        name="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
                         <div className="relative w-full mb-3">
                           <label
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -202,13 +254,13 @@ export default function LayananKonsultasi() {
                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="konsultasi"
                           >
-                            Konsultasi
+                            Tema Konsultasi
                           </label>
                           <input
                             type="konsultasi"
                             required
                             className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Konsultasi"
+                            placeholder="Tema Konsultasi"
                             name="konsultasi"
                             onChange={(e) => setKonsultasi(e.target.value)}
                           />
@@ -233,36 +285,43 @@ export default function LayananKonsultasi() {
 
                         <div className="relative w-full mb-3">
                           <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            className="block  text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="message"
                           >
-                            Rekomendasi
+                            <label className="block uppercase">File Uraian Masalah</label> 
+                            <label>(Google Drive, Anyone with the link)</label> 
+                            <a href="https://www.youtube.com/watch?v=uZjLDBEIAOg"  target="blank" className="bg-orange-500 text-white active:bg-blueGray-100 text-1xl  uppercase px-3 py-2 rounded-full">
+                           link tutorial</a>
                           </label>
                           <textarea
                             rows="4"
                             cols="80"
                             className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                            placeholder="Rekomendasi.."
-                            name="rekomendasi"
-                            onChange={(e) => setRekomendasi(e.target.value)}
+                            placeholder="File uraian masalah.."
+                            name="file_uraian_masalah"
+                            onChange={(e) => setFile(e.target.value)}
                           />
                         </div>
 
-                        <div className="relative w-full mb-3 mt-8">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="full-name"
-                          >
-                            Tanggal
-                          </label>
-                          <input
-                            type="date"
-                            className="border-0 px-3 py-3 placeholder-black text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Tanggal"
-                            name="tanggal"
-                            onChange={(e) => setTanggal(e.target.value)}
-                          />
-                        </div>
+                        <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="tiket"
+                        
+                      >
+                        Tiket
+                      </label> 
+                      <input
+                        type="tiket"
+                        className="border-0 px-3 py-3 placeholder-black text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder={tiket}
+                        name="tiket" 
+                        readOnly={true}
+                        value={tiket}
+                      />
+                    </div>
+
+                       
                         <input className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="submit" value="Kirim Pesan" onClick={sendDataToAPI}/>
                         </form>
